@@ -1,0 +1,1 @@
+Testaus toteutetaan jUnitia hyväksikäyttäen.
