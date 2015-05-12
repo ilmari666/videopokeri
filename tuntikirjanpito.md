@@ -1,1 +1,0 @@
-10/05/2015 2h projektin setup

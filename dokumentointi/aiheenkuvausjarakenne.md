@@ -25,5 +25,5 @@ Pelin voittokädet määritellään JSON-formaatissa ja parsitaan käyttäen Goo
 Pelin toteutusta monimutkaistetaan tallentamalla esimerkiksi tuplauksen jakohistoria ja näyttämällä tätä pelaajalle.
 
 #Kayttajat
-Pelaaja joka tavoittelee miljoonia.
-Pelaaja syöttää rahaa, valitsee pidettävät kortit sekä tekee päätöksen tuplauksesta tai voittojen pitämisestä.
+-Pelaaja syöttää rahaa, valitsee pidettävät kortit sekä tekee päätöksen tuplauksesta tai voittojen pitämisestä.
+-Pelin ylläpitäjä voi vaihtaa pelin kiekkoja ja palkitsemislogiikkaa editoimalla JSON-tiedostoja
