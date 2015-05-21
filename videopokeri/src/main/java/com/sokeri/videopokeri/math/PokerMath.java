@@ -10,7 +10,7 @@ package com.sokeri.videopokeri.math;
  * @author Ilmari
  */
 public class PokerMath {
-    public PokerMath (){
+    public PokerMath (MathLoader source){
         
     }
 }

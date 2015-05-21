@@ -22,6 +22,10 @@ public class Money {
         return true;
     }
     
+    public long getBalance(){
+        return this.balance;
+    }
+    
     public boolean withdraw(long sum){
         if (sum<=this.balance){
             this.balance-=sum;
