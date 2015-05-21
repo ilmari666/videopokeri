@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sokeri.videopokeri.logic;
 
 /**
@@ -24,22 +19,24 @@ public class Card {
         // lazy constructor that enables deck to be created in a single loop
         // eats values from 0 to 52 and creates cards accordingly
         
-        if (value == 0){
+        if (seedValue == 0){
             this.value = 0;
             this.suite = Suites.WILD;
-        } else if (value < 53){
-            value--;
-            this.value = value%13;
-            this.suite = Suites.values()[(int) Math.floor(value/13)];
+        } else if (seedValue < 53){
+            seedValue--;
+            this.value = seedValue%13+1;
+            this.suite = Suites.values()[(int) Math.floor(seedValue/13)];
         } else {
-            throw new Error("Unable to create card #"+value);
+            this.value = -1;
         }
     }
     
     @Override
     public String toString (){
-        if (this.value != 0){
-            return (valueStrings[this.value]+" of "+this.suite.toString()+"s");
+        if (this.value == -1){
+            return "undefined of undefinedes";
+        } else if (this.value != 0){
+            return (valueStrings[this.value]+" of "+this.suite.toString().toLowerCase()+"s");
         }
         return valueStrings[this.value];
     }

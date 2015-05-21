@@ -1,20 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sokeri.videopokeri.logic;
 
 /**
  *
  * @author Ilmari
  */
-public class Money {
+public class Wallet {
     protected long balance;
-    public Money(){
+    public Wallet(){
         this.balance = 0;
     }
-    public Money(long balance){
+    public Wallet(long balance){
         this.balance = balance;
     }
     public boolean deposit(long sum){

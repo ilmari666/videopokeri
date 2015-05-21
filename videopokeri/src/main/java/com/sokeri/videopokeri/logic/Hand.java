@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sokeri.videopokeri.logic;
 
 /**
@@ -11,15 +6,12 @@ package com.sokeri.videopokeri.logic;
  */
 public class Hand {
     Card[] cards;
-    int cursor;
     
     public Hand(){
-        this.cursor = 0;
         this.cards = new Card[5];
     }
     
     public Hand(int size){
-        this.cursor = 0;
         this.cards = new Card[size];
     }
     
@@ -49,8 +41,8 @@ public class Hand {
     }
     
     public int getCardIndex(Card card){
-        for (int i=0; i < this.cursor; i++){
-            if (this.cards[i]== card){
+        for (int i=0; i < this.cards.length; i++){
+            if (card.equals(this.cards[i])){
                 return i;
             }
         }

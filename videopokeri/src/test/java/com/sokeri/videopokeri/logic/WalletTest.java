@@ -16,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Ilmari
  */
-public class MoneyTest {
-    Money money;
-    public MoneyTest() {
+public class WalletTest {
+    Wallet wallet;
+    public WalletTest() {
     }
     
     @BeforeClass
@@ -31,7 +31,7 @@ public class MoneyTest {
     
     @Before
     public void setUp() {
-        money = new Money();
+        wallet = new Wallet();
     }
     
     @After
@@ -40,21 +40,21 @@ public class MoneyTest {
     
     @Test
     public void addMoney(){
-        money.deposit(20);
-        assertEquals(money.getBalance(), 20);
+        wallet.deposit(20);
+        assertEquals(20, wallet.getBalance());
     }
 
     @Test
     public void withdrawTooMuchFails(){
-        money.deposit(20);
-        assertEquals(money.withdraw(30), false);
+        wallet.deposit(20);
+        assertEquals(false, wallet.withdraw(30));
     }
 
     @Test
     public void failedWithDrawDoesntAlterBalance(){
-        money.deposit(20);
-        money.withdraw(30);
-        assertEquals(money.getBalance(), 20);
+        wallet.deposit(20);
+        wallet.withdraw(30);
+        assertEquals(20, wallet.getBalance());
     }
     
 

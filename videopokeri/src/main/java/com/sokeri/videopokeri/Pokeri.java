@@ -7,25 +7,25 @@ package com.sokeri.videopokeri;
 
 import com.sokeri.videopokeri.math.PokerMath;
 import com.sokeri.videopokeri.math.MathLoader;
-import com.sokeri.videopokeri.logic.Money;
+import com.sokeri.videopokeri.logic.Wallet;
+import com.sokeri.videopokeri.logic.Deck;
+import com.sokeri.videopokeri.logic.Player;
 /**
  *
  * @author Ilmari
  */
 public class Pokeri {
+    protected Deck deck;
+    public enum States {DEPOSIT, START_ROUND, PLAYER_SELECT, DOUBLE};
     
     public Pokeri(){
         PokerMath pokerMath = new PokerMath(new MathLoader("conf/math.json"));
-      
-    }
-    public boolean deposit(long money){
-            
-        return true;
+        deck = new Deck(true, 1); // create a full deck with one joker
     }
     
     public static void main(String[] args) {
         Pokeri poker = new Pokeri();
-        Money playerMoney = new Money(0);
-        poker.deposit(20000);
+        Player player = new Player();
+        player.addMoney(20000);
     }
 }

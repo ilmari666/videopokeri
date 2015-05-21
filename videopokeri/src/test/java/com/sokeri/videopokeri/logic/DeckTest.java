@@ -5,8 +5,6 @@
  */
 package com.sokeri.videopokeri.logic;
 
-
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,9 +16,9 @@ import static org.junit.Assert.*;
  *
  * @author Ilmari
  */
-public class CardTest {
-   
-    public CardTest() {
+public class DeckTest {
+    
+    public DeckTest() {
     }
     
     @BeforeClass
@@ -40,25 +38,8 @@ public class CardTest {
     }
 
     @Test
-    public void createLazyJoker(){
-        Card card = new Card(0);
-        assertEquals("Joker", card.toString());
+    public void createAutoFilledDeck() {
+        TestDeck deck = new TestDeck(true, 1);
+        assertEquals("Deuce of spades",  deck.getCardAtIndex(1).toString());
     }
-    @Test
-    public void aceOfSpades(){
-        Card card = new Card(1);
-        assertEquals("Ace of spades", card.toString());
-    }
-    
-    @Test
-    public void createKingOfDiamonds(){
-        Card card = new Card(52);
-        assertEquals("King of diamonds", card.toString());
-    }
-    
-    public void indexOutOfBoundException(){
-        Card card = new Card(53);
-        assertEquals(card.toString(), "undefined of undefineds");
-    }
-
 }

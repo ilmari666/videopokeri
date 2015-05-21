@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sokeri.videopokeri.logic;
 
 /**
@@ -18,6 +13,17 @@ public class Deck  {
     }
     public Deck(int size){
         cards = new Card[size];
+    }
+    
+    public Deck(boolean autofill, int jokers){
+        cards = new Card[52+jokers];
+        int i;
+        for (i = 0; i < 52;i++){
+            cards[i] = new Card(i+1);
+        }
+        for (;i<cards.length;i++){
+            cards[i] = new Card(0);
+        }
     }
     
     public void shuffle(){

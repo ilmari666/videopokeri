@@ -1,11 +1,5 @@
 package com.sokeri.videopokeri.logic;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import com.sokeri.videopokeri.logic.Card;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -47,8 +41,24 @@ public class HandTest {
     // public void hello() {}
     @Test
     public void dealCard(){
-       Card card = new Card(1,Card.Suites.SPADE);
+       Card card = new Card(1, Card.Suites.SPADE);
        hand.deal(card);
-       assertEquals(hand.getCardIndex(card), 0);
+       assertEquals(0, hand.getCardIndex(card));
+    }
+    
+    @Test
+    public void dealTooManyCards(){
+        for (int i=0;i<5;i++){
+            hand.deal(new Card(i));
+        }
+        assertEquals(null, hand.deal(new Card(5)));
+    }
+    
+    @Test
+    public void discardCard(){
+       Card card = new Card(1, Card.Suites.SPADE);
+       hand.deal(card);
+       hand.discard(card);
+       assertEquals(-1, hand.getCardIndex(card));
     }
 }
