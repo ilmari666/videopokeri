@@ -19,8 +19,14 @@ public class Pokeri {
     public enum States {DEPOSIT, START_ROUND, PLAYER_SELECT, DOUBLE};
     
     public Pokeri(){
-        PokerMath pokerMath = new PokerMath(new MathLoader("conf/math.json"));
-        deck = new Deck(true, 1); // create a full deck with one joker
+        try {
+            PokerMath pokerMath = new PokerMath(new MathLoader("/math.json"));
+            deck = new Deck(true, 1); // create a full deck with one joker
+            System.out.println("success");
+        } catch (Exception e){
+            System.out.println("failure "+e);
+            
+        }
     }
     
     public static void main(String[] args) {

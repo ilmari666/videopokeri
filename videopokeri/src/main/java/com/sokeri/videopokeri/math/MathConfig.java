@@ -5,18 +5,11 @@
  */
 package com.sokeri.videopokeri.math;
 
-import com.sokeri.videopokeri.logic.Hand;
-
 /**
  *
- * @author Ilmari
+ * @author makktonnikala
  */
-public class PokerMath {
-    public PokerMath (MathLoader source){
-        
-    }
-    
-    public void match(Win win, Hand hand){
-        
-    }
+public class MathConfig {
+    private Win[] wins;
+   
 }

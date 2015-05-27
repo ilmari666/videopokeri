@@ -1,0 +1,25 @@
+{
+	"wins":[
+		{
+			"name": "fiveofakind",
+			"pattern": "n,n,n,n,n",
+			"multiplier": 5
+		},
+		{
+			"name": "straight",
+			"pattern": "n,n+1,n+2,n+3,n+4",
+			"multiplier": 5
+		},
+		{
+			"name": "flush",
+			"pattern": "s,s,s,s,s",
+			"multiplier": 5
+		},
+		{
+			"name": "staightflush",
+			"pattern": "ns,n+1s,n+2s,n+3s,n+4s",
+			"multiplier": 5
+		}
+
+	]
+}
