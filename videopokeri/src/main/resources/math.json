@@ -1,13 +1,18 @@
 {
 	"wins":[
 		{
+			"name": "royalflush",
+			"pattern": "As,Ts,Js,Qs,Ks",
+			multiplier: 6,
+		},
+		{
 			"name": "fiveofakind",
-			"pattern": "n,n,n,n,n",
+			"pattern": "x,x,x,x,x",
 			"multiplier": 5
 		},
 		{
 			"name": "straight",
-			"pattern": "n,n+1,n+2,n+3,n+4",
+			"pattern": "x,x+1,x+2,x+3,x+4",
 			"multiplier": 5
 		},
 		{
@@ -17,8 +22,24 @@
 		},
 		{
 			"name": "staightflush",
-			"pattern": "ns,n+1s,n+2s,n+3s,n+4s",
+			"pattern": "xs,xs+1,xs+2,xs+3,xs+4",
 			"multiplier": 5
+		},
+		{
+			"name": "fullhouse",
+			"pattern": "x,x,x,y,y",
+			"multiplier": 4
+		},
+		{
+			"name": "twopair",
+			"pattern": "x,x,y,y",
+			"multiplier": 3
+		},
+		{
+			"name": "pair",
+			"pattern": "x,x",
+			"multiplier": 1
 		}
+
 	]
 }

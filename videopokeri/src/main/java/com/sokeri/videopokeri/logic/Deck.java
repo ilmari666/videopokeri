@@ -1,5 +1,7 @@
 package com.sokeri.videopokeri.logic;
 
+import com.sokeri.videopokeri.logic.Card;
+
 /**
  *
  * @author Ilmari

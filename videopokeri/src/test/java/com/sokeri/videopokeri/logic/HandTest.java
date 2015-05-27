@@ -1,6 +1,5 @@
 package com.sokeri.videopokeri.logic;
 
-import com.sokeri.videopokeri.logic.Card;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,7 +40,7 @@ public class HandTest {
     // public void hello() {}
     @Test
     public void dealCard(){
-       Card card = new Card(1, Card.Suites.SPADE);
+       Card card = new Card(1, Suite.SPADE);
        hand.deal(card);
        assertEquals(0, hand.getCardIndex(card));
     }
@@ -56,7 +55,7 @@ public class HandTest {
     
     @Test
     public void discardCard(){
-       Card card = new Card(1, Card.Suites.SPADE);
+       Card card = new Card(1, Suite.SPADE);
        hand.deal(card);
        hand.discard(card);
        assertEquals(-1, hand.getCardIndex(card));

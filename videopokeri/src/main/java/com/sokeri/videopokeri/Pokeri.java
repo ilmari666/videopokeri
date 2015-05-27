@@ -7,9 +7,9 @@ package com.sokeri.videopokeri;
 
 import com.sokeri.videopokeri.math.PokerMath;
 import com.sokeri.videopokeri.math.MathLoader;
-import com.sokeri.videopokeri.logic.Wallet;
+import com.sokeri.videopokeri.money.Wallet;
 import com.sokeri.videopokeri.logic.Deck;
-import com.sokeri.videopokeri.logic.Player;
+import com.sokeri.videopokeri.money.Player;
 /**
  *
  * @author Ilmari
@@ -20,7 +20,7 @@ public class Pokeri {
     
     public Pokeri(){
         try {
-            PokerMath pokerMath = new PokerMath(new MathLoader("/math.json"));
+            PokerMath pokerMath = new PokerMath("/math.json");
             deck = new Deck(true, 1); // create a full deck with one joker
             System.out.println("success");
         } catch (Exception e){

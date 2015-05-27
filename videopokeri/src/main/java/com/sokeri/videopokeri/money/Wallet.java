@@ -1,4 +1,4 @@
-package com.sokeri.videopokeri.logic;
+package com.sokeri.videopokeri.money;
 
 /**
  *

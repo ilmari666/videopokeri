@@ -6,17 +6,32 @@
 package com.sokeri.videopokeri.math;
 
 import com.sokeri.videopokeri.logic.Hand;
-
+import com.sokeri.videopokeri.logic.Card;
+import java.util.Arrays;
 /**
  *
  * @author Ilmari
  */
 public class PokerMath {
-    public PokerMath (MathLoader source){
-        
+    private Win[] wins;
+    public PokerMath (String src){
+        MathLoader loader = new MathLoader();
+        MathConfig config = loader.load(src);
+        this.wins = config.getWins();
     }
     
-    public void match(Win win, Hand hand){
-        
+    public Match checkWins(Hand hand){
+        // check wins relies on priority ordered configuration file and thus returns the first match
+        Card[] cards = hand.getCardsWithoutWilds(); // get cards to be tested
+        Arrays.sort(cards); // sort them for easy matching
+        int wildCount = hand.getCards().length - cards.length;
+    
+        for (int i=0, len = this.wins.length; i<len; i++){
+            Match match = new Match (cards, this.wins[i], wildCount);
+            if (match.isMatch){
+                return match;
+            }
+        }
+        return null;
     }
 }

@@ -40,6 +40,6 @@ public class DeckTest {
     @Test
     public void createAutoFilledDeck() {
         TestDeck deck = new TestDeck(true, 1);
-        assertEquals("Deuce of spades",  deck.getCardAtIndex(1).toString());
+        assertEquals("2s",  deck.getCardAtIndex(1).toString());
     }
 }

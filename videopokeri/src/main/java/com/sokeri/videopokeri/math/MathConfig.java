@@ -11,5 +11,7 @@ package com.sokeri.videopokeri.math;
  */
 public class MathConfig {
     private Win[] wins;
-   
+    public Win[] getWins(){
+        return this.wins;
+    }
 }
