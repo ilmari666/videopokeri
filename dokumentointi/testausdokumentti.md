@@ -1,1 +1,1 @@
-21.5. ensimmäiset yksikkötestit kirjattu ja samalla myös haaviin jäänyt muutama virhe
+21.5. ensimmäiset yksikkötestit kirjoitettu ja samalla myös haaviin jäänyt muutama virhe
