@@ -8,8 +8,8 @@ package com.sokeri.videopokeri.logic;
 public class Card implements Comparable<Card>{
     //public enum Suites {SPADE, HEART, CLUB, DIAMOND, WILD}
 
-    private static String[] valueStrings = {"Joker","Ace","Deuce","3","4","5","6","7","8","9","10", "Jack","Queen", "King"};
-    private static char[] valueChars = {'*','A','2','3','4','5','6','7','8','9','T','J','Q','K'};
+    public static final String[] valueStrings = {"Joker","Ace","Deuce","3","4","5","6","7","8","9","10", "Jack","Queen", "King"};
+    public static final char[] valueChars = {'*','A','2','3','4','5','6','7','8','9','T','J','Q','K'};
     
     
     public int value;

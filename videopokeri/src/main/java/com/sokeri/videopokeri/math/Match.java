@@ -24,7 +24,7 @@ public class Match {
        
         Rule rule;
         Rule[] testPattern = win.getPattern().pattern;
-
+        System.out.println("new match ..");
         for (int i=0;i<cards.length;i++){
             // @todo if sorted cards[0] == ace do a special check round
             int j;
@@ -32,33 +32,27 @@ public class Match {
             matched = 0;
             boolean[] used = new boolean[cardCount]; // todo reset instead of recreating
             rule = testPattern[0];
-            if (rule.testSpecific != 0){
-                j = 1;
-                x = cards[i].value;
-                y = -1;
-                used[i] = true;
-            } else {
-                x = -1;
-                y = -1;
-                j = 0;
-            }
-            if (rule.testSuite){
-                s = cards[i].suite;
-            } else {
-                s = null;
-            }
+
+            s = null;
+            x = -1;
+            y = -1;
             
-            for (;j<testPattern.length;j++){
+            
+            for (j=0;j<testPattern.length;j++){
                 rule = testPattern[j];
                 for (int k=0;k<cardCount;k++){
                     if (!used[k]){
                         card = cards[k];
                         boolean ok = true;
                         if (rule.testSuite){
-                            ok &= card.suite == s;
+                            ok &= (card.suite == s);
                         }
                         if (rule.testX){
-                            ok &= (card.value == x+rule.offset);
+                            if (x == -1){
+                                x = card.value;
+                            } else {
+                                ok &= (card.value == x+rule.offset);
+                            }
                         } else if (rule.testY){
                             if (y == -1){
                                 y = card.value;
@@ -68,7 +62,6 @@ public class Match {
                         } else if (rule.testSpecific != -1){
                             ok &= (card.value == rule.testSpecific);
                         }
-                        
                         if (ok){
                             matched++;
                             used[k]=true;

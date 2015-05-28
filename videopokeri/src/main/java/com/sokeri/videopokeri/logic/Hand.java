@@ -1,6 +1,7 @@
 package com.sokeri.videopokeri.logic;
 
 import com.sokeri.videopokeri.logic.Card;
+import java.util.Arrays;
 
 /**
  *
@@ -52,7 +53,7 @@ public class Hand {
         Card[] returnedCards = new Card[this.getCardCount()]; 
         for (;i<len;i++){
             card = this.cards[i];
-            if (card!=null && card.isWild()){
+            if (card!=null && !card.isWild()){
                 returnedCards[cursor] = card;
                 cursor++;
             }
@@ -84,4 +85,5 @@ public class Hand {
         }
         return -1;
     }
+    
 }

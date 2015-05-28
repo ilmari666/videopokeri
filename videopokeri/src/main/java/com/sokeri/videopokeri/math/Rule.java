@@ -5,7 +5,7 @@
  */
 package com.sokeri.videopokeri.math;
 import java.util.Arrays;
-
+import com.sokeri.videopokeri.logic.Card;
 /**
  *
  * @author Ilmari
@@ -31,7 +31,9 @@ public class Rule {
         // we do an ugly chew to create beauty and effectiveness in the live rule matching
         
         boolean complete = false;
-        for (String instruction : tmp) {
+//        for (String instruction : tmp) {
+        for (int i=0;i<tmp.length;i++){
+            String instruction = tmp[i];
             if (complete){
                 break;
             }
@@ -46,11 +48,11 @@ public class Rule {
                     this.testSuite = true;
                     break;
                 case "+":
-                    this.offset = Integer.parseInt(rule.split("+")[1]);
+                    this.offset = Integer.parseInt(rule.split("\\+")[1]);
                     complete = true;
                     break;
                 case "-":
-                    this.offset = -Integer.parseInt(rule.split("+")[1]);
+                    this.offset = -Integer.parseInt(rule.split("-")[1]);
                     complete = true;
                     break;
                 case "A":
@@ -95,4 +97,29 @@ public class Rule {
             }
         }        
     }
+    
+    @Override
+    public String toString(){
+        String str="";
+        if (this.testX){
+            str+="x";
+        }
+        if (this.testY){
+            str+="y";
+        }
+        if (this.offset>0){
+            str = str+"+"+this.offset;
+        } else if (this.offset<0){
+            str = str+this.offset;
+        }
+        if (this.testSpecific!=-1){
+            str = str+Card.valueChars[this.testSpecific];
+        }
+        if (this.testSuite){
+            str = str+"s";
+        }
+        
+        return str;
+    }
+
 }
