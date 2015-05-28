@@ -10,8 +10,14 @@ package com.sokeri.videopokeri.math;
  * @author makktonnikala
  */
 public class MathConfig {
-    private Win[] wins;
+    private RawWin[] wins;
+    
     public Win[] getWins(){
-        return this.wins;
+        // create and return actual win objects with matching patterns etc
+        Win[] ret = new Win[this.wins.length];
+        for (int i=0;i<this.wins.length;i++){
+            ret[i] = new Win(this.wins[i]);
+        }
+        return ret;
     }
 }

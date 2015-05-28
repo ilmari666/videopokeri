@@ -24,6 +24,8 @@ public class PokerMath {
         // check wins relies on priority ordered configuration file and thus returns the first match
         Card[] cards = hand.getCardsWithoutWilds(); // get cards to be tested
         Arrays.sort(cards); // sort them for easy matching
+       // if rising +1 +2 strings would be reversed you could reverse the win check sort would also get biggest pairs first in games played with larger than five card decks. ie 22 44 55 would yield 55 and 44
+        // still needs to address the ace issue in pair comparison and in straights
         int wildCount = hand.getCards().length - cards.length;
     
         for (int i=0, len = this.wins.length; i<len; i++){

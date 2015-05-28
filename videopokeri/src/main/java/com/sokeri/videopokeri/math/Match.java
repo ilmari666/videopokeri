@@ -13,26 +13,76 @@ import com.sokeri.videopokeri.logic.Suite;
  */
 public class Match {
     public boolean isMatch;
-    
-    public Match(Card[] cards, Win win, int wilds){
+    public boolean[] used;    
+    public Match(Card[] cards, Win win, int wildCards){
         boolean checkflush;
-        Suite suite;
-        String[] testPattern = win.getPattern().split(",");
-        if (testPattern[0].indexOf('s')!=-1){
-        // simple check will suffice as there's no mixed suit combinations
-            checkflush = true;
-            suite = cards[0].suite;
-        } else {
-            checkflush = false;
+        boolean matches;
+        Suite s;
+        int x, y, matched, cardCount = cards.length;
+        Card card;
+        
+       
+        Rule rule;
+        Rule[] testPattern = win.getPattern().pattern;
 
-        }
-        for (int i=0,len=testPattern.length;i<len;i++){
-            if (checkflush){
-                
+        for (int i=0;i<cards.length;i++){
+            // @todo if sorted cards[0] == ace do a special check round
+            int j;
+            
+            matched = 0;
+            boolean[] used = new boolean[cardCount]; // todo reset instead of recreating
+            rule = testPattern[0];
+            if (rule.testSpecific != 0){
+                j = 1;
+                x = cards[i].value;
+                y = -1;
+                used[i] = true;
+            } else {
+                x = -1;
+                y = -1;
+                j = 0;
             }
-        }        
-        
-        
+            if (rule.testSuite){
+                s = cards[i].suite;
+            } else {
+                s = null;
+            }
+            
+            for (;j<testPattern.length;j++){
+                rule = testPattern[j];
+                for (int k=0;k<cardCount;k++){
+                    if (!used[k]){
+                        card = cards[k];
+                        boolean ok = true;
+                        if (rule.testSuite){
+                            ok &= card.suite == s;
+                        }
+                        if (rule.testX){
+                            ok &= (card.value == x+rule.offset);
+                        } else if (rule.testY){
+                            if (y == -1){
+                                y = card.value;
+                            } else {
+                                ok &= (card.value == y+rule.offset);
+                            }
+                        } else if (rule.testSpecific != -1){
+                            ok &= (card.value == rule.testSpecific);
+                        }
+                        
+                        if (ok){
+                            matched++;
+                            used[k]=true;
+                        }
+                    } 
+                }
+            }
+            
+            if (matched+wildCards>=testPattern.length){
+                this.isMatch = true;
+                this.used = used;
+                break;
+            }
+        }
     }
     
 }

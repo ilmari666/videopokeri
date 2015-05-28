@@ -10,7 +10,7 @@ public class Card implements Comparable<Card>{
 
     private static String[] valueStrings = {"Joker","Ace","Deuce","3","4","5","6","7","8","9","10", "Jack","Queen", "King"};
     private static char[] valueChars = {'*','A','2','3','4','5','6','7','8','9','T','J','Q','K'};
-
+    
     
     public int value;
     public Suite suite;
@@ -54,6 +54,10 @@ public class Card implements Comparable<Card>{
         return (this.suite.getValue() == Suite.WILD);
     }
 
+    public String valueAsString(){
+        return ""+valueChars[this.value];
+    }
+    
     @Override
     public int compareTo(Card o){
         return this.value-o.value;

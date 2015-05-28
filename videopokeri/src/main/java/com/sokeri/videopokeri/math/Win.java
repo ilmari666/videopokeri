@@ -7,25 +7,19 @@ package com.sokeri.videopokeri.math;
 
 /**
  *
- * @author makktonnikala
+ * @author Ilmari
  */
-// win types
-// straights
-// flushes
-// straight flushes
-// pair(s)
-// high cards
-
 public class Win {
     private String name;
-    private String pattern;
+    private WinPattern pattern;
     private long multiplier;
-    private boolean checkflush;
     
-    public Win(){
-
+    public Win(RawWin config){
+        this.name = config.name;
+        this.multiplier = config.multiplier;
+        this.pattern = new WinPattern(config.pattern);
     }
-    public String getPattern(){
+    public WinPattern getPattern(){
         return this.pattern;
     }
 }
