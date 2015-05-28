@@ -3,7 +3,7 @@
 		{
 			"name": "royalflush",
 			"pattern": "As,Ts,Js,Qs,Ks",
-			multiplier: 6,
+			"multiplier": 6
 		},
 		{
 			"name": "fiveofakind",
