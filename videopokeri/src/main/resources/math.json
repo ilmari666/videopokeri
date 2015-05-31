@@ -15,11 +15,6 @@
 			"pattern": "x,x+1,x+2,x+3,x+4",
 			"multiplier": 5
 		},
-                {
-			"name": "acehighstraight",
-			"pattern": "A,T,J,Q,K",
-			"multiplier": 5
-		},
 		{
 			"name": "flush",
 			"pattern": "s,s,s,s,s",

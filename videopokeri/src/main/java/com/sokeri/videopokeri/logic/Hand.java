@@ -62,6 +62,7 @@ public class Hand {
     }
     
     public Card[] getCards(){
+        // returns null slots too
         return this.cards;
     }
     

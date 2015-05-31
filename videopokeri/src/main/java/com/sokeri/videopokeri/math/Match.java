@@ -24,11 +24,8 @@ public class Match {
        
         Rule rule;
         Rule[] testPattern = win.getPattern().pattern;
-        System.out.println("new match ..");
         for (int i=0;i<cards.length;i++){
             // @todo if sorted cards[0] == ace do a special check round
-            int j;
-            
             matched = 0;
             boolean[] used = new boolean[cardCount]; // todo reset instead of recreating
             rule = testPattern[0];
@@ -36,13 +33,14 @@ public class Match {
             s = null;
             x = -1;
             y = -1;
-            
-            
-            for (j=0;j<testPattern.length;j++){
+            for (int j=0;j<testPattern.length;j++){
                 rule = testPattern[j];
-                for (int k=0;k<cardCount;k++){
-                    if (!used[k]){
-                        card = cards[k];
+                
+                card = cards[i];
+                int cardToBeTestedIndex = i;
+                for (int k=0;k<=cardCount;k++){
+                    
+                    if (!used[cardToBeTestedIndex] && card != null){
                         boolean ok = true;
                         if (rule.testSuite){
                             ok &= (card.suite == s);
@@ -51,22 +49,31 @@ public class Match {
                             if (x == -1){
                                 x = card.value;
                             } else {
-                                ok &= (card.value == x+rule.offset);
+                                if (!(card.value == 1 && x+rule.offset == 14)){ // skip if we're looking for an ace to finish off a straight
+                                    ok &= (card.value == x+rule.offset);
+                                }
+                                
                             }
                         } else if (rule.testY){
                             if (y == -1){
                                 y = card.value;
                             } else {
-                                ok &= (card.value == y+rule.offset);
+                                if (!(card.value == 1 && y+rule.offset == 14)){ // skip if we're looking for an ace to finish off a straight
+                                    ok &= (card.value == y+rule.offset);
+                                }
                             }
                         } else if (rule.testSpecific != -1){
                             ok &= (card.value == rule.testSpecific);
                         }
                         if (ok){
                             matched++;
-                            used[k]=true;
+                            used[cardToBeTestedIndex]=true;
                         }
-                    } 
+                    }
+                    if (k!=cardCount){
+                        card = cards[k];
+                        cardToBeTestedIndex = k;
+                    }
                 }
             }
             

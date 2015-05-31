@@ -22,4 +22,8 @@ public class Win {
     public WinPattern getPattern(){
         return this.pattern;
     }
+    
+    public String getName(){
+        return this.name;
+    }
 }

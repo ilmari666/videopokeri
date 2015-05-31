@@ -34,7 +34,7 @@ public class Card implements Comparable<Card>{
         // 0 = joker
         // 1 = ace of spades
         // 13 = king of spades
-        
+ 
         if (seedValue == 0){
             this.value = 0;
             this.suite = new Suite(Suite.WILD);

@@ -48,19 +48,65 @@ public class MatchTest {
          hand.deal(new Card(3));
          hand.deal(new Card(4));
          hand.deal(new Card(5));
-//         System.out.println(StringUtils.join(hand.getCards(), ","));
          RawWin raw =  new RawWin();
          raw.pattern = "x,x+1,x+2,x+3,x+4";
          raw.multiplier = 4;
          raw.name = "teststraight";
-         Win win = new Win(raw);
-  //       System.out.println(StringUtils.join(win.getPattern().pattern, ","));
+         Win straight = new Win(raw);
          
-         PokerMath pMath = new PokerMath();
-         pMath.setWins(new Win[]{win});
-         Match result = new Match (hand.getCards(), win, 0);
+         Match result = new Match (hand.getCards(), straight, 0);
          assertEquals(true, result.isMatch);
+     }
+     
+     @Test
+     public void testTwoPair() {
+         Hand hand = new Hand();
+         hand.deal(new Card(1));
+         hand.deal(new Card(1));
+         hand.deal(new Card(3));
+         hand.deal(new Card(3));
+         RawWin raw =  new RawWin();
+         raw.pattern = "x,x,y,y";
+         raw.multiplier = 4;
+         raw.name = "testtwopair";
+         Win twopair = new Win(raw);
          
+         Match result = new Match (hand.getCards(), twopair, 0);
+         assertEquals(true, result.isMatch);
+     }
+     
+     @Test
+     public void testAceHighStraight(){
+         Card[] cards = new Card[5];
+         cards[0] = new Card(1);
+         cards[1] = new Card(10);
+         cards[2] = new Card(11);
+         cards[3] = new Card(12);
+         cards[4] = new Card(13);
+         RawWin raw =  new RawWin();
+         raw.pattern = "x,x+1,x+2,x+3,x+4";
+         raw.multiplier = 4;
+         raw.name = "teststraight";
+         Win acehighstraight = new Win(raw);
+         Match result = new Match(cards, acehighstraight, 0);
+         assertEquals(true, result.isMatch);
+     }
+     
+     @Test
+     public void testNotTwoPair(){
+         Hand hand = new Hand();
+         hand.deal(new Card(1));
+         hand.deal(new Card(1));
+         hand.deal(new Card(2));
+         hand.deal(new Card(3));
+         hand.deal(new Card(4));
+         RawWin raw =  new RawWin();
+         raw.pattern = "x,x,y,y";
+         raw.multiplier = 4;
+         raw.name = "testtwopair";
+         Win twopair = new Win(raw);
          
+         Match result = new Match (hand.getCards(), twopair, 0);
+         assertEquals(false, result.isMatch);
      }
 }
