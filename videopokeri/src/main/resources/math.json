@@ -1,45 +1,53 @@
 {
-	"wins":[
-		{
-			"name": "royalflush",
-			"pattern": "As,Ts,Js,Qs,Ks",
-			"multiplier": 6
-		},
-		{
-			"name": "fiveofakind",
-			"pattern": "x,x,x,x,x",
-			"multiplier": 5
-		},
-		{
-			"name": "straight",
-			"pattern": "x,x+1,x+2,x+3,x+4",
-			"multiplier": 5
-		},
-		{
-			"name": "flush",
-			"pattern": "s,s,s,s,s",
-			"multiplier": 5
-		},
-		{
-			"name": "staightflush",
-			"pattern": "xs,xs+1,xs+2,xs+3,xs+4",
-			"multiplier": 5
-		},
-		{
-			"name": "fullhouse",
-			"pattern": "x,x,x,y,y",
-			"multiplier": 4
-		},
-		{
-			"name": "twopair",
-			"pattern": "x,x,y,y",
-			"multiplier": 3
-		},
-		{
-			"name": "pair",
-			"pattern": "x,x",
-			"multiplier": 1
-		}
+    "betSteps": [100,200,300,400,500],
+    "wins":[
+	{
+            "name": "royalflush",
+            "pattern": "As,Ts,Js,Qs,Ks",
+            "multiplier": 6
+	},
+	{
+            "name": "fiveofakind",
+            "pattern": "x,x,x,x,x",
+            "multiplier": 5
+	},
+	{
+            "name": "staightflush",
+            "pattern": "xs,xs+1,xs+2,xs+3,xs+4",
+            "multiplier": 5
+	},
+	{
+            "name": "fourofakind",
+            "pattern": "x,x,x,x,x",
+            "multiplier": 5
+	},
+	{
+            "name": "fullhouse",
+            "pattern": "x,x,x,y,y",
+            "multiplier": 4
+	},
+	{
+            "name": "flush",
+            "pattern": "s,s,s,s,s",
+            "multiplier": 5
+	},
 
-	]
+	{
+            "name": "straight",
+            "pattern": "x,x+1,x+2,x+3,x+4",
+            "multiplier": 5
+	},
+
+
+	{
+            "name": "twopairs",
+            "pattern": "x,x,y,y",
+            "multiplier": 3
+	},
+	{
+            "name": "pair",
+            "pattern": "x,x",
+            "multiplier": 1
+	}
+    ]
 }

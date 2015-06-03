@@ -53,5 +53,21 @@ public class Deck  {
         return null;
     }
     
+    public Card[] dealCards(Hand hand){
+        int freeSlots = hand.getFreeSlots();
+        Card[] dealt = new Card[freeSlots];
+        for (int i=0;i<freeSlots;i++){
+            if (this.cursor<this.cards.length-1){
+                 dealt[i] = hand.deal(this.cards[this.cursor]);
+                 if (dealt[i] != null){
+                     this.cursor++;
+                 }
+            }
+        }
+        return dealt;
+    }
+    
+    
+    
   
 }

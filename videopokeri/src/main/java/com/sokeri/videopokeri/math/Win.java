@@ -19,6 +19,10 @@ public class Win {
         this.multiplier = config.multiplier;
         this.pattern = new WinPattern(config.pattern);
     }
+    
+    public long getMultiplier(){
+        return this.multiplier;
+    }
     public WinPattern getPattern(){
         return this.pattern;
     }

@@ -11,7 +11,7 @@ package com.sokeri.videopokeri.math;
  */
 public class MathConfig {
     private RawWin[] wins;
-    
+    private long[] betSteps;
     public Win[] getWins(){
         // create and return actual win objects with matching patterns etc
         Win[] ret = new Win[this.wins.length];
@@ -19,5 +19,8 @@ public class MathConfig {
             ret[i] = new Win(this.wins[i]);
         }
         return ret;
+    }
+    public long[] getBetSteps(){
+        return this.betSteps;
     }
 }

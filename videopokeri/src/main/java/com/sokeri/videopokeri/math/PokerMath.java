@@ -14,18 +14,26 @@ import java.util.Arrays;
  */
 public class PokerMath {
     private Win[] wins;
+    public long[] betSteps;
     public PokerMath (String src){
         MathLoader loader = new MathLoader();
         MathConfig config = loader.load(src);
         this.wins = config.getWins();
+        
+        this.betSteps = config.getBetSteps();
     }
     
     public PokerMath(){
         
     }
+ 
     public void setWins(Win[] wins){
+        // for developement
         this.wins = wins;
     }
+    
+    
+    
     public Match checkWins(Hand hand){
         // check wins relies on priority ordered configuration file and thus returns the first match
         Card[] cards = hand.getCardsWithoutWilds(); // get cards to be tested
@@ -33,7 +41,7 @@ public class PokerMath {
         //Arrays.sort(cards); // sort them for easy matching
        // if rising +1 +2 strings would be reversed you could reverse the win check sort would also get biggest pairs first in games played with larger than five card decks. ie 22 44 55 would yield 55 and 44
         // still needs to address the ace issue in pair comparison and in straights
-        int wildCount = hand.getCards().length - cards.length;
+        int wildCount = hand.getCards().length - cards.length; // returns invalid count if  hand not full
     
         for (int i=0, len = this.wins.length; i<len; i++){
             System.out.println("i "+i);

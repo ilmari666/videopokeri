@@ -13,59 +13,58 @@ import com.sokeri.videopokeri.logic.Suite;
  */
 public class Match {
     public boolean isMatch;
-    public boolean[] used;    
+    public boolean[] used;
+//    public Rule[] pattern;
+    private Card[] cards;
+    private int wildCards;
+    public Win win;
+    
     public Match(Card[] cards, Win win, int wildCards){
-        boolean checkflush;
-        boolean matches;
+        this.cards = cards;
+        this.wildCards = wildCards;
+        this.win = win;
+        Rule [] pattern = win.getPattern().pattern;
         Suite s;
-        int x, y, matched, cardCount = cards.length;
+        int x, y, matched, cardCount = this.cards.length;
         Card card;
-        
-       
         Rule rule;
-        Rule[] testPattern = win.getPattern().pattern;
-        for (int i=0;i<cards.length;i++){
-            // @todo if sorted cards[0] == ace do a special check round
+        
+        for (int i=0;i<cardCount;i++){
             matched = 0;
-            boolean[] used = new boolean[cardCount]; // todo reset instead of recreating
-            rule = testPattern[0];
-
+            used = new boolean[cardCount]; // todo reset instead of recreating
             s = null;
             x = -1;
             y = -1;
-            for (int j=0;j<testPattern.length;j++){
-                rule = testPattern[j];
-                
-                card = cards[i];
+            for (int j=0;j<pattern.length;j++){
+                rule = pattern[j];
+                card = this.cards[i];
                 int cardToBeTestedIndex = i;
                 for (int k=0;k<=cardCount;k++){
-                    
                     if (!used[cardToBeTestedIndex] && card != null){
-                        boolean ok = true;
+                        boolean matches = true;
                         if (rule.testSuite){
-                            ok &= (card.suite == s);
+                            matches &= (card.suite == s);
                         }
                         if (rule.testX){
                             if (x == -1){
                                 x = card.value;
                             } else {
                                 if (!(card.value == 1 && x+rule.offset == 14)){ // skip if we're looking for an ace to finish off a straight
-                                    ok &= (card.value == x+rule.offset);
+                                   matches &= (card.value == x+rule.offset);
                                 }
-                                
                             }
                         } else if (rule.testY){
                             if (y == -1){
                                 y = card.value;
                             } else {
                                 if (!(card.value == 1 && y+rule.offset == 14)){ // skip if we're looking for an ace to finish off a straight
-                                    ok &= (card.value == y+rule.offset);
+                                    matches &= (card.value == y+rule.offset);
                                 }
                             }
                         } else if (rule.testSpecific != -1){
-                            ok &= (card.value == rule.testSpecific);
+                            matches &= (card.value == rule.testSpecific);
                         }
-                        if (ok){
+                        if (matches){
                             matched++;
                             used[cardToBeTestedIndex]=true;
                         }
@@ -77,12 +76,11 @@ public class Match {
                 }
             }
             
-            if (matched+wildCards>=testPattern.length){
+            if (matched+wildCards>=pattern.length){
                 this.isMatch = true;
-                this.used = used;
                 break;
             }
-        }
+        }        
     }
     
 }

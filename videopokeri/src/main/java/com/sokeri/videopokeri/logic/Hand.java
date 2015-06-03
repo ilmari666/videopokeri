@@ -22,6 +22,28 @@ public class Hand {
         return discard(getCardIndex(card));
     }
     
+    public Card[] keep(int[] locked){
+        int i, j, cursor=0;
+        Card[] discarded = new Card[cards.length-locked.length];
+        for (i=0;i<cards.length;i++){
+            for (j=0;j<locked.length;j++){
+                if (locked[j] == i){
+                    break;
+                }
+            }
+            if (j == locked.length){
+                discarded[cursor] = this.discard(i);
+                cursor++;
+            }
+        }
+        return discarded;
+    }
+    
+    public Card[] discardAll(){
+        Card[] tmp = this.cards;
+        this.cards = null;
+        return tmp;
+    }
     public Card discard(int cardIndex){
         Card discarded;
         if (cardIndex>=0 && cardIndex<this.cards.length){
@@ -33,6 +55,15 @@ public class Hand {
         return null;
     }
     
+    public int getFreeSlots(){
+        int freeSlots = 0;
+        for (int i = 0; i<this.cards.length;i++){
+            if (this.cards[i] == null){
+                freeSlots++;
+            }
+        }
+        return freeSlots;
+    }
     
     public Card deal(Card card){
         for (int i = 0; i<this.cards.length;i++){
