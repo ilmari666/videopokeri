@@ -7,21 +7,36 @@ import java.util.Arrays;
  *
  * @author Ilmari
  */
+
+/**
+ * Logical representation of a player's hand 
+ */
 public class Hand {
+    public final int SIZE = 5; // default size
+    
     Card[] cards;
     
     public Hand(){
-        this.cards = new Card[5];
+        this.cards = new Card[SIZE];
     }
     
     public Hand(int size){
         this.cards = new Card[size];
     }
-    
+   /**
+    * Discards a Card object from the hand and returns it;
+    * @param target 
+    * @return removed item
+    */
     public Card discard(Card card){
+        card.location = -1;
         return discard(getCardIndex(card));
     }
-    
+    /**
+     * Discards all but cards in given indices
+     * @param locked array of card indices to be kept
+     * @return discarded cards
+     */
     public Card[] keep(int[] locked){
         int i, j, cursor=0;
         Card[] discarded = new Card[cards.length-locked.length];
@@ -38,7 +53,10 @@ public class Hand {
         }
         return discarded;
     }
-    
+    /**
+     * Discards everything
+     * @return discarded and empty
+     */
     public Card[] discardAll(){
         Card[] tmp = this.cards;
         this.cards = null;

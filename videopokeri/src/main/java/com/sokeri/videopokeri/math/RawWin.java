@@ -8,13 +8,8 @@ package com.sokeri.videopokeri.math;
 /**
  *
  * @author makktonnikala
- */
-// win types
-// straights
-// flushes
-// straight flushes
-// pair(s)
-// high cards
+ * Container object to be filled with loaded JSON by the MathLoader class
+*/
 
 public class RawWin {
     public String name;

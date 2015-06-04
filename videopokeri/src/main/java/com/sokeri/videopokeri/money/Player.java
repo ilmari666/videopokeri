@@ -15,9 +15,14 @@ public class Player {
         this.wallet = new Wallet();
         this.hand = new Hand();
     }
-    public boolean addMoney(long sum){
-        return this.wallet.deposit(sum);
+    public void addMoney(long sum){
+        this.wallet.deposit(sum);
     }
+    /**
+     * used to withdraw money from a players account
+     * @param sum how much to bet
+     * @return how much was successfully wagered
+     */
     public long placeBet(long sum){
         if (this.wallet.withdraw(sum)){
             this.bet = sum;

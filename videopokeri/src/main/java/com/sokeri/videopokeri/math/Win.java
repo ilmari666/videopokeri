@@ -8,6 +8,7 @@ package com.sokeri.videopokeri.math;
 /**
  *
  * @author Ilmari
+ * A simple container class for win information
  */
 public class Win {
     private String name;

@@ -15,6 +15,10 @@ import java.util.Arrays;
 public class PokerMath {
     private Win[] wins;
     public long[] betSteps;
+    /**
+     * Creates a PokerMath instance
+     * @param src JSON configuration source to be mapped to a MathConfig instance
+     */
     public PokerMath (String src){
         MathLoader loader = new MathLoader();
         MathConfig config = loader.load(src);
@@ -33,9 +37,12 @@ public class PokerMath {
     }
     
     
-    
+    /**
+     * Takes a players hand and compares it against a presorted array of wins and returns the first matching win
+     * @param hand Players hand
+     * @return match instance if one is found
+     */
     public Match checkWins(Hand hand){
-        // check wins relies on priority ordered configuration file and thus returns the first match
         Card[] cards = hand.getCardsWithoutWilds(); // get cards to be tested
 
         //Arrays.sort(cards); // sort them for easy matching

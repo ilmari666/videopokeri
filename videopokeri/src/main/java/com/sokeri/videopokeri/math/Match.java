@@ -18,7 +18,15 @@ public class Match {
     private Card[] cards;
     private int wildCards;
     public Win win;
-    
+    /**
+     * This constructor method checks if a set of cards matches a certain win pattern
+     * isMatch is set true if matched
+     * used is a list of cards used in a match situation
+     * win is the matching win that was checked against with
+     * @param cards players hand not including wild cards
+     * @param win win to be compared against to
+     * @param wildCards number of wildcards in the hand 
+     */
     public Match(Card[] cards, Win win, int wildCards){
         this.cards = cards;
         this.wildCards = wildCards;

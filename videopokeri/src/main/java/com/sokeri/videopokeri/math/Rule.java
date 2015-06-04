@@ -9,6 +9,7 @@ import com.sokeri.videopokeri.logic.Card;
 /**
  *
  * @author Ilmari
+ * A piece of rule information used in matching a pattern
  */
 public class Rule {
     public boolean testSuite;
@@ -18,14 +19,14 @@ public class Rule {
     public int offset = 0;
     public int testSpecific = -1;
     
-    public Rule(){
-        
-    }
-    
+   
     public Rule(String rule){
         this.setRule(rule);
     }
-    
+    /**
+     * Set and parse a set of rules to be matched against in a Match instance
+     * @param rule String defining a rule (a piece of a WinPattern) loaded through MathLoader
+     */
     public void setRule(String rule){
        String[] tmp = rule.split("");
         // we do an ugly chew to create beauty and effectiveness in the live rule matching

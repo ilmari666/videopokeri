@@ -18,7 +18,11 @@ public class MathLoader {
     public MathLoader (){
         
     }
-        
+/**
+ * Load a given configuration file, maps it to a MathConfig object
+ * @param src Source file path
+ * @return MathConfig or null if fails
+ */
     public MathConfig load(String src) {
         try {
             Reader reader = new InputStreamReader(MathLoader.class.getResourceAsStream(src), "UTF-8");

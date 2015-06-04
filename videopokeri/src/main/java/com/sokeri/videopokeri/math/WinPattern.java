@@ -8,6 +8,7 @@ package com.sokeri.videopokeri.math;
 /**
  *
  * @author Ilmari
+ * A simple container for a set of rules that form a pattern used in checking for matching wins
  */
 public class WinPattern {
     public Rule[] pattern;

@@ -16,7 +16,11 @@ import com.sokeri.videopokeri.logic.Result;
  *
  * @author Ilmari
  */
+/**
+ * The main instance of the game which currently controls the flow.
+ */
 public class Pokeri {
+  
     private final Deck deck;
     private enum States {DEPOSIT, PLACE_BET, PLAYER_SELECT, DOUBLE};
     private States state;
@@ -32,7 +36,14 @@ public class Pokeri {
         player = new Player();
         
     }
-    public boolean startRound(){
+    /**
+    * method tries to place a bet to start the game round if the state allows
+    * when successful shuffles the deck and deals a handful of cards to the player before 
+    * continuing to the next state
+    * @return true if successful, false if fails
+    */
+   public boolean startRound(){
+ 
         // place bet and deal the first round of cards
         if (state == States.PLACE_BET && player.placeBet(betHandler.getBet()) != 0){
             player.hand.discardAll();
@@ -43,7 +54,13 @@ public class Pokeri {
      
         return false;
     }
-    public Result lockAndDeal(int[] keptIndices){
+    /**
+     * method deals a new set of cards to the player but keeps the cards the player has elected to keep
+     * generates the round result and (when implemented) gives it to the gui later before finally switching state
+     * @param keptIndices card slots in player's hand that won't we swapped in the secondary deal
+     * 
+     */
+    public void lockAndDeal(int[] keptIndices){
         Result result = null;
         if (state == States.PLAYER_SELECT){
             player.hand.keep(keptIndices);
@@ -56,7 +73,6 @@ public class Pokeri {
         }
         // check for remaining money (-> state.deposit)
         state = States.PLACE_BET;
-        return result;
     }
     public Player getPlayer(){
         // for development time purposes

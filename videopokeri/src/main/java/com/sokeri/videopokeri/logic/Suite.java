@@ -9,6 +9,10 @@ package com.sokeri.videopokeri.logic;
  *
  * @author Ilmari
  */
+/**
+ * 
+ * A logical representation of a playing card's suite
+ */
 public class Suite {
     public static int SPADE = 0;
     public static int HEART = 1;

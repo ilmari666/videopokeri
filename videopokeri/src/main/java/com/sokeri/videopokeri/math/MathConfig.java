@@ -7,7 +7,10 @@ package com.sokeri.videopokeri.math;
 
 /**
  *
- * @author makktonnikala
+ * @author ilmari
+ */
+/**
+ * A container class filled from a JSON configuration file
  */
 public class MathConfig {
     private RawWin[] wins;
