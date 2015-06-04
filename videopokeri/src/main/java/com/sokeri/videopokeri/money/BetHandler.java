@@ -35,15 +35,18 @@ public class BetHandler {
     /**
      * find next afforded bet or loop
      * @return current bet amount, 0 if player has not enough money for any bet
+     * @param player the player is revealed as a parameter to check if he can afford the bet
      */
-    public long nextBet(){
-        // @todo: loop until next affordable bet, return 0 if player can not afford a bet
+    public long step(Player player){
+        // @todo: loop until next affordable bet, or the lowest bet when player cant afford any
         if (currentBetIndex<steps.length-1){
             currentBetIndex++;
         } else {
             currentBetIndex = 0;
         }
-        
+        while (currentBetIndex != 0 && !player.canAfford(steps[currentBetIndex])){
+            currentBetIndex--;
+        }
         return this.steps[currentBetIndex];
     }
 }

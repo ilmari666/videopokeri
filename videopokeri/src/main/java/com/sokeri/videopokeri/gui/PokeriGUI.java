@@ -8,9 +8,12 @@ package com.sokeri.videopokeri.gui;
  *
  * @author Ilmari
  */
+/*
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+*/
+import javax.swing.JPanel;
 
 public class PokeriGUI extends JPanel {
 

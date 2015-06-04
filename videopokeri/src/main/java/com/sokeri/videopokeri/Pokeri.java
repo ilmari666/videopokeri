@@ -90,7 +90,7 @@ public class Pokeri {
         Player player = poker.getPlayer();
         BetHandler betHandler = poker.getBetHandler();
         player.addMoney(10000);
-        betHandler.nextBet();
+        betHandler.step(player);
         poker.startRound();
         poker.lockAndDeal(new int[]{2,3});
         

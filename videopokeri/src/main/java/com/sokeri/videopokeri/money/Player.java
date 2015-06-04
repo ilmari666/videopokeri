@@ -15,6 +15,15 @@ public class Player {
         this.wallet = new Wallet();
         this.hand = new Hand();
     }
+    
+    /**
+     * Test if player can afford a specified bet level
+     * @param bet long in pennis
+     * @return boolean can (s)he
+     */
+    public boolean canAfford(long bet){
+        return (bet<=this.wallet.getBalance());
+    }
     public void addMoney(long sum){
         this.wallet.deposit(sum);
     }
