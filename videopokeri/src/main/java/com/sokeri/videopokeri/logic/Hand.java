@@ -72,7 +72,10 @@ public class Hand {
         }
         return null;
     }
-    
+    /**
+     * get the amount of free slots in the hand (mainly for dealing new cards)
+     * @return number of free slots
+     */
     public int getFreeSlots(){
         int freeSlots = 0;
         for (int i = 0; i<this.cards.length;i++){
@@ -82,7 +85,11 @@ public class Hand {
         }
         return freeSlots;
     }
-    
+    /**
+     * deal a card to the next available slott
+     * @param card card to be dealt
+     * @return the dealt cart is successful, else null
+     */
     public Card deal(Card card){
         for (int i = 0; i<this.cards.length;i++){
             if (this.cards[i] == null){
@@ -94,7 +101,11 @@ public class Hand {
         return null;
     }
     
-    
+
+    /**
+     * get an array of cards in hand but discard empty slots and cards that are set wild
+     * @return a list of non wild cards
+    */    
     public Card[] getCardsWithoutWilds(){
         int i=0, len = this.cards.length, cursor=0;
         Card card;
@@ -109,12 +120,19 @@ public class Hand {
         }
         return returnedCards;
     }
-    
+    /**
+     * returns all cards (and also null slots)
+     * @return the array representing the players hand
+     */
     public Card[] getCards(){
         // returns null slots too
         return this.cards;
     }
     
+    /**
+     * get a count of used slots
+     * @return count of used slots
+     */
     public int getCardCount(){
         int count = 0, i=0, len = this.cards.length;
         for (;i<len;i++){
@@ -125,6 +143,11 @@ public class Hand {
         return count;
     }
     
+    /**
+     * get a cards index in the hand
+     * @param card which card
+     * @return if matched the index, else -1
+     */
     
     public int getCardIndex(Card card){
         // different implementation to card.location for testing purposes
