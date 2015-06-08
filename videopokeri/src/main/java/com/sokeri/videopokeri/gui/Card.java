@@ -28,6 +28,9 @@ public class Card extends JPanel {
     public Card(int index){
         this.img = new ImageIcon(Card.class.getResource("/img/cards.png")).getImage();
         this.index = index;
+        Dimension size = new Dimension(CARD_WIDTH, CARD_HEIGHT);
+        setSize(size);
+        setLayout(null);
         //79x123
         // 13 per row
         // + wilds + backside

@@ -20,6 +20,8 @@ import javax.swing.JButton;
 import java.net.URL;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;
 
 
 public class PokeriGUI  {
@@ -32,18 +34,24 @@ public class PokeriGUI  {
         
 
         JFrame frame = new JFrame();
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent){
+                System.exit(0);
+            }        
+        });           
+        
         JPanel panel = new JPanel();
         frame.setSize(400,400);
-        Card card = new Card(1); // should this be moved to a conf file?
+        Card card = new Card(5); // should this be moved to a conf file?
         frame.getContentPane().add(card);
         
         JButton placeBet = new JButton("place_bet", loadImageIcon("/img/play.png"));
         EventListener listener = new EventListener();
         
+
         placeBet.addActionListener(listener);
        
-        frame.pack();
-        frame.setVisible(true);
 
         frame.getContentPane().add(placeBet);
 
@@ -53,7 +61,9 @@ public class PokeriGUI  {
         frame.setMaximumSize(size);
         frame.setSize(size);
         frame.setLayout(null);
-        
+        frame.pack();
+        frame.setVisible(true);
+
         // http://math.hws.edu/javanotes/source/
         // https://docs.oracle.com/javase/7/docs/api/javax/swing/JPanel.html
         // http://math.hws.edu/javanotes/source/chapter6/HighLowGUI.java
