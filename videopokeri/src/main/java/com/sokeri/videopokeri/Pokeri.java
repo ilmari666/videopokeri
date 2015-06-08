@@ -12,6 +12,7 @@ import com.sokeri.videopokeri.logic.Deck;
 import com.sokeri.videopokeri.money.Player;
 import com.sokeri.videopokeri.money.BetHandler;
 import com.sokeri.videopokeri.logic.Result;
+import com.sokeri.videopokeri.gui.PokeriGUI;
 /**
  *
  * @author Ilmari
@@ -27,6 +28,7 @@ public class Pokeri {
     private Player player;
     private BetHandler betHandler;
     private PokerMath math;
+    private PokeriGUI gui;
     
     public Pokeri(){
         this.math = new PokerMath("/math.json");
@@ -34,6 +36,7 @@ public class Pokeri {
         state = States.DEPOSIT;
         deck = new Deck(true,1); // create a full deck with one joker
         player = new Player();
+        gui = new PokeriGUI();
         
     }
     /**
