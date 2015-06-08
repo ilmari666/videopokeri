@@ -29,6 +29,9 @@ public class Pokeri {
     private PokerMath math;
     
     public Pokeri(){
+        /**
+         * @todo need to sort out the flow between states
+        */
         this.math = new PokerMath("/math.json");
         this.betHandler = new BetHandler(math.betSteps);
         state = States.DEPOSIT;
