@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.sokeri.videopokeri.gui;
+import com.sokeri.videopokeri.Pokeri;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,11 +13,15 @@ import java.awt.event.ActionListener;
  * @author makktonnikala
  */
 public class EventListener implements ActionListener{
-    public EventListener(){
-        
+    Pokeri mainLogic;
+    public EventListener(Pokeri main){
+        mainLogic = main;
     }
     public void actionPerformed(ActionEvent evt) {
         String command = evt.getActionCommand();
+        if (command.equals("place_bet")){
+            mainLogic.startRound();
+        }
         System.out.println(command);
     }
 }

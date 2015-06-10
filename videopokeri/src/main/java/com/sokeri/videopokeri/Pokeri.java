@@ -36,10 +36,11 @@ public class Pokeri {
         */
         this.math = new PokerMath("/math.json");
         this.betHandler = new BetHandler(math.betSteps);
-        state = States.DEPOSIT;
+        state = States.PLACE_BET; //States.DEPOSIT;
         deck = new Deck(true,1); // create a full deck with one joker
         player = new Player();
-        gui = new PokeriGUI();
+        gui = new PokeriGUI(this);
+        
         
     }
     /**
@@ -49,12 +50,16 @@ public class Pokeri {
     * @return true if successful, false if fails
     */
    public boolean startRound(){
+       System.out.println("startRound "+state+" "+betHandler.getBet());
  
         // place bet and deal the first round of cards
         if (state == States.PLACE_BET && player.placeBet(betHandler.getBet()) != 0){
+            System.out.println(" and action!");
+
             player.hand.discardAll();
             deck.shuffle();
             deck.dealCards(player.hand);
+            gui.dealCards(player.hand.getCardValues());
             state = States.PLAYER_SELECT;
         }
      
@@ -97,8 +102,8 @@ public class Pokeri {
         BetHandler betHandler = poker.getBetHandler();
         player.addMoney(10000);
         betHandler.step(player);
-        poker.startRound();
-        poker.lockAndDeal(new int[]{2,3});
+//        poker.startRound();
+//        poker.lockAndDeal(new int[]{2,3});
         
         
         

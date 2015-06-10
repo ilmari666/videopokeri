@@ -28,10 +28,7 @@ public class BetHandler {
         return steps[currentBetIndex];
     }
     
-    public boolean canAfford(Player player, long sum){
-        
-        return true;
-    }
+
     /**
      * find next afforded bet or loop
      * @return current bet amount, 0 if player has not enough money for any bet

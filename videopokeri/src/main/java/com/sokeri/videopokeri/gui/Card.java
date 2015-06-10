@@ -20,31 +20,26 @@ import javax.swing.JFrame;
 import javax.swing.ImageIcon;
 
 public class Card extends JPanel {
-    private final int CARD_WIDTH = 79;
-    private final int CARD_HEIGHT = 123;
+    public static int CARD_WIDTH = 79;
+    public static int CARD_HEIGHT = 123;
 
-    private Image img;
+    private static Image img;
     private int index;
-    public Card(int index){
-        this.img = new ImageIcon(Card.class.getResource("/img/cards.png")).getImage();
-        this.index = index;
+    public Card(int idx){
+        index = idx;
+        if (img == null){
+            img = new ImageIcon(Card.class.getResource("/img/cards.png")).getImage();
+        }
         Dimension size = new Dimension(CARD_WIDTH, CARD_HEIGHT);
         setSize(size);
-        setLayout(null);
-        //79x123
-        // 13 per row
-        // + wilds + backside
-/*        Dimension size = new Dimension(img.getWidth(null), img.getHeight(null));
         setPreferredSize(size);
-        setMinimumSize(size);
-        setMaximumSize(size);
-        setSize(size);
         setLayout(null);
-        */
      }
     
+    @Override
     public void paintComponent(Graphics g) {
-        int row, column;
+        
+        int row, column, x, y;
         if (this.index!=0){
             row = (int) (this.index-1)/13;
             column = (this.index%13)-1;
@@ -52,8 +47,10 @@ public class Card extends JPanel {
             row = 4;
             column=0;
         }
+        x = CARD_WIDTH*column;
+        y = CARD_HEIGHT*row;
     
-        g.drawImage(img, CARD_WIDTH*column, CARD_HEIGHT*row, null);
+        g.drawImage(img, 0, 0, CARD_WIDTH, CARD_HEIGHT,  x,y, x+CARD_WIDTH, y+CARD_HEIGHT, null);
     }
 
 }

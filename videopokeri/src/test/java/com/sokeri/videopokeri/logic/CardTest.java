@@ -56,6 +56,14 @@ public class CardTest {
         assertEquals("Kd", card.toString());
     }
     
+    @Test
+    public void revertBackToSeed(){
+        Card card = new Card (24);
+        assertEquals(24, card.getValueAsInt());
+    }
+    
+    
+    @Test
     public void indexOutOfBoundException(){
         Card card = new Card(53);
         assertEquals(card.toString(), "??");

@@ -12,8 +12,8 @@ public class Player {
     public long bet; // 
     
     public Player(){
-        this.wallet = new Wallet();
-        this.hand = new Hand();
+        wallet = new Wallet();
+        hand = new Hand();
     }
     
     /**
@@ -22,7 +22,7 @@ public class Player {
      * @return boolean can (s)he
      */
     public boolean canAfford(long bet){
-        return (bet<=this.wallet.getBalance());
+        return (bet<=wallet.getBalance());
     }
     public void addMoney(long sum){
         this.wallet.deposit(sum);

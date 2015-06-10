@@ -17,11 +17,14 @@ import javax.swing.*;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import java.net.URL;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
+import java.awt.Insets;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
+import com.sokeri.videopokeri.Pokeri;
 
 
 public class PokeriGUI  {
@@ -29,45 +32,64 @@ public class PokeriGUI  {
     /**
     * Controls the GUI
     */
-    public PokeriGUI() {
-        System.out.println("new pokerigui");
-        
+    JFrame window;
+    JPanel cards;
+    public PokeriGUI(Pokeri pokeri) {
+        EventListener listener = new EventListener(pokeri);
+        window = new JFrame("Videopokeri");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JFrame frame = new JFrame();
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent windowEvent){
-                System.exit(0);
-            }        
-        });           
-        
-        JPanel panel = new JPanel();
-        frame.setSize(400,400);
-        Card card = new Card(5); // should this be moved to a conf file?
-        frame.getContentPane().add(card);
-        
-        JButton placeBet = new JButton("place_bet", loadImageIcon("/img/play.png"));
-        EventListener listener = new EventListener();
-        
-
-        placeBet.addActionListener(listener);
+ 
+        Table table = new Table();
+        Card card = new Card(0);
+        card.setLocation(0,0);
+        table.add(card);
+        card = new Card(1);
+        card.setLocation(200,0);
+        table.add(card);
        
+        Buttons buttons = new Buttons();
+        JButton placeBet = new JButton("place_bet");
+        placeBet.setLocation(200,100);
+        placeBet.setSize(100,50);
+        placeBet.setMargin(new Insets(0, 0, 0, 0));
+        placeBet.addActionListener(listener);
+        buttons.add(placeBet);
+        buttons.setLocation(0,0);
+        
+        window.getContentPane().add(buttons);
+        window.getContentPane().add(table);
+        
+        window.setLocation(0,0);
+        window.pack();
+        window.setResizable(false);
+        window.setVisible(true);
+        window.setSize(640,400);
+        window.setLayout(null);
 
-        frame.getContentPane().add(placeBet);
 
-        Dimension size = new Dimension(640, 480);
-        frame.setPreferredSize(size);
-        frame.setMinimumSize(size);
-        frame.setMaximumSize(size);
-        frame.setSize(size);
-        frame.setLayout(null);
-        frame.pack();
-        frame.setVisible(true);
 
-        // http://math.hws.edu/javanotes/source/
-        // https://docs.oracle.com/javase/7/docs/api/javax/swing/JPanel.html
-        // http://math.hws.edu/javanotes/source/chapter6/HighLowGUI.java
-        // http://math.hws.edu/javanotes/source/
+
+    }
+    
+    public void cleanPanel(JPanel panel){
+        panel.setLocation(0,0);
+        panel.setVisible(true);
+        panel.setLayout(null);
+    }
+    
+    public void dealCards(int[] cards){
+        System.out.println("dealCards");
+        JPanel content = new JPanel();
+        window.setContentPane(content);
+        for (int i=0; i<cards.length; i++){
+            if (cards[i] != -1){
+                Card card = new Card(cards[i]);
+                card.setLocation(Card.CARD_WIDTH*i,100);
+                window.getContentPane().add(card);
+            }
+        }
+        window.setLayout(null);
     }
 
     private ImageIcon loadImageIcon(String src){

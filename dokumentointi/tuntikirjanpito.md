@@ -8,4 +8,6 @@ Tuntikirjanpito
 -28/05 7h refaktorointia ja ensimmäinen toimiva? voitontarkastus, testit ja muut kyllä tehtävän tavoitteet jäivät toissijaiseksi kun rapa roiskui ja puita kaatui. myöhässä testit ja fiksit siihen että voitontarkastus-algoritmi toimii ja projektin suurin nostelu takana
 31/05 1h lisättiin ässä-fiksi ja kirjoitettiin tähän testi. korjattiin nolo bugi voitontarkistusloopissa
 03/06 4h matchin konstruktorin refaktoroinnin pohtimista, peruspelikierroksen mockup toteutus
-04/06 1h javadoc kommentointi
+04/06 2h javadoc kommentointi
+08/06 3h javan graafisten kirjastoihin tutustuminen ja nenän nyrpistely
+10/06 4h javan graafisten kirjastojen tutustuminen ja nenän nyrpistely

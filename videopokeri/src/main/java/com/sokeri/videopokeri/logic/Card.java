@@ -48,9 +48,6 @@ public class Card implements Comparable<Card>{
      * @param value int (0-52)
     */
     public Card (int seedValue){
-
-
- 
         if (seedValue == 0){
             this.value = 0;
             this.suite = new Suite(Suite.WILD);
@@ -70,6 +67,17 @@ public class Card implements Comparable<Card>{
         return (this.suite.getValue() == Suite.WILD);
     }
 
+    /**
+     * @return value as an integer seed. Utilized in graphics.
+     */
+    public int getValueAsInt(){
+        if (value == 0){
+            return value;
+        }
+        return suite.getValue()*13+value;
+
+    }
+    
     public String valueAsString(){
         return ""+valueChars[this.value];
     }

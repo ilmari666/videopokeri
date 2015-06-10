@@ -14,14 +14,15 @@ import java.util.Arrays;
 public class Hand {
     public final int SIZE = 5; // default size
     
-    Card[] cards;
+    private Card[] cards;
     
     public Hand(){
-        this.cards = new Card[SIZE];
+        cards = new Card[SIZE];
+        System.out.println("hand! "+cards.length);
     }
     
     public Hand(int size){
-        this.cards = new Card[size];
+        cards = new Card[size];
     }
    /**
     * Discards a Card object from the hand and returns it;
@@ -58,15 +59,15 @@ public class Hand {
      * @return discarded and empty
      */
     public Card[] discardAll(){
-        Card[] tmp = this.cards;
-        this.cards = null;
+        Card[] tmp = cards;
+        cards = new Card[cards.length];
         return tmp;
     }
     public Card discard(int cardIndex){
         Card discarded;
-        if (cardIndex>=0 && cardIndex<this.cards.length){
-            discarded = this.cards[cardIndex];
-            this.cards[cardIndex] = null;
+        if (cardIndex>=0 && cardIndex<cards.length){
+            discarded = cards[cardIndex];
+            cards[cardIndex] = null;
             discarded.location = -1;
             return discarded;
         }
@@ -78,22 +79,24 @@ public class Hand {
      */
     public int getFreeSlots(){
         int freeSlots = 0;
-        for (int i = 0; i<this.cards.length;i++){
-            if (this.cards[i] == null){
+        System.out.println(cards);
+        for (int i = 0; i<cards.length;i++){
+            if (cards[i] == null){
                 freeSlots++;
             }
         }
         return freeSlots;
     }
     /**
-     * deal a card to the next available slott
+     * deal a card to the next available slot
      * @param card card to be dealt
      * @return the dealt cart is successful, else null
      */
     public Card deal(Card card){
-        for (int i = 0; i<this.cards.length;i++){
-            if (this.cards[i] == null){
-                this.cards[i] = card;
+       
+        for (int i = 0; i<cards.length;i++){
+            if (cards[i] == null){
+                cards[i] = card;
                 card.location = i;
                 return card;
             }
@@ -107,12 +110,12 @@ public class Hand {
      * @return a list of non wild cards
     */    
     public Card[] getCardsWithoutWilds(){
-        int i=0, len = this.cards.length, cursor=0;
+        int i=0, len = cards.length, cursor=0;
         Card card;
         
-        Card[] returnedCards = new Card[this.getCardCount()]; 
+        Card[] returnedCards = new Card[getCardCount()]; 
         for (;i<len;i++){
-            card = this.cards[i];
+            card = cards[i];
             if (card!=null && !card.isWild()){
                 returnedCards[cursor] = card;
                 cursor++;
@@ -124,6 +127,7 @@ public class Hand {
      * returns all cards (and also null slots)
      * @return the array representing the players hand
      */
+    
     public Card[] getCards(){
         // returns null slots too
         return this.cards;
@@ -157,6 +161,17 @@ public class Hand {
             }
         }
         return -1;
+    }
+    
+    /**
+     * returns the player hand as simple numbers for visualisation purposes
+     */
+    public int[] getCardValues(){
+        int[] values = new int[cards.length];
+        for (int i = 0;i<cards.length;i++){
+            values[i] = cards[i].getValueAsInt();
+        }
+        return values;
     }
     
 }
