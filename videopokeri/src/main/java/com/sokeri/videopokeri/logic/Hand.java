@@ -174,4 +174,7 @@ public class Hand {
         return values;
     }
     
+    public int getSize(){
+        return cards.length;
+    }
 }

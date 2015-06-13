@@ -4,20 +4,12 @@
  * and open the template in the editor.
  */
 package com.sokeri.videopokeri.gui;
-import javax.swing.JComponent;
+
+import javax.swing.JButton;
 /**
  *
  * @author Ilmari
  */
-public class Table extends JComponent {
-    Card[] cards;
+public class ButtonCard extends JButton {
     
-    public Table(){
-        super();
-        setSize(640,400);
-        setLayout(null);
-    }
-    public void deal(Card card){
-        add(card);
-    }
 }

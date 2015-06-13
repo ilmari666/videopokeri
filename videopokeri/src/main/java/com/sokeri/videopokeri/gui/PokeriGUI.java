@@ -24,6 +24,12 @@ import javax.swing.ImageIcon;
 import java.awt.Insets;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowAdapter;
+
+
+
+
+
+
 import com.sokeri.videopokeri.Pokeri;
 
 
@@ -34,64 +40,56 @@ public class PokeriGUI  {
     */
     JFrame window;
     JPanel cards;
-    public PokeriGUI(Pokeri pokeri) {
-        EventListener listener = new EventListener(pokeri);
+    public Hand hand;
+    Buttons buttons;
+    EventListener listener;
+    public PokeriGUI(Pokeri pokeri, int handSize) {
+        this.listener = new EventListener(pokeri);
         window = new JFrame("Videopokeri");
+        window.setLayout(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setLocation(0,0);
+        window.pack();
+        window.setResizable(false);
+        window.setVisible(true);
+        window.setSize(640,400);
+        this.buttons = createButtons();
 
+        
  
-        Table table = new Table();
+        hand = new Hand(handSize, window, listener);
+        /*
         Card card = new Card(0);
         card.setLocation(0,0);
         table.add(card);
         card = new Card(1);
         card.setLocation(200,0);
         table.add(card);
-       
-        Buttons buttons = new Buttons();
+       */
+
+        
+        window.getContentPane().add(buttons);
+        window.getContentPane().add(hand);
+        window.setFocusable(true);
+        window.setFocusTraversalKeysEnabled(false);
+        window.addKeyListener(new KeyboardListener(hand));
+
+        window.repaint();
+    }
+    
+    public Buttons createButtons(){
+        Buttons btns = new Buttons();
         JButton placeBet = new JButton("place_bet");
-        placeBet.setLocation(200,100);
+        placeBet.setLocation(0,100);
         placeBet.setSize(100,50);
         placeBet.setMargin(new Insets(0, 0, 0, 0));
         placeBet.addActionListener(listener);
-        buttons.add(placeBet);
-        buttons.setLocation(0,0);
+        btns.add(placeBet);
+        btns.setLocation(0,200);
+        return btns;
+    }
+ 
         
-        window.getContentPane().add(buttons);
-        window.getContentPane().add(table);
-        
-        window.setLocation(0,0);
-        window.pack();
-        window.setResizable(false);
-        window.setVisible(true);
-        window.setSize(640,400);
-        window.setLayout(null);
-
-
-
-
-    }
-    
-    public void cleanPanel(JPanel panel){
-        panel.setLocation(0,0);
-        panel.setVisible(true);
-        panel.setLayout(null);
-    }
-    
-    public void dealCards(int[] cards){
-        System.out.println("dealCards");
-        JPanel content = new JPanel();
-        window.setContentPane(content);
-        for (int i=0; i<cards.length; i++){
-            if (cards[i] != -1){
-                Card card = new Card(cards[i]);
-                card.setLocation(Card.CARD_WIDTH*i,100);
-                window.getContentPane().add(card);
-            }
-        }
-        window.setLayout(null);
-    }
-
     private ImageIcon loadImageIcon(String src){
 
         URL imgURL = PokeriGUI.class.getResource(src);

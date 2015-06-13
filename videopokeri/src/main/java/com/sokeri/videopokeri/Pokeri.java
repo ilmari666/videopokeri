@@ -39,7 +39,7 @@ public class Pokeri {
         state = States.PLACE_BET; //States.DEPOSIT;
         deck = new Deck(true,1); // create a full deck with one joker
         player = new Player();
-        gui = new PokeriGUI(this);
+        gui = new PokeriGUI(this, player.hand.getSize());
         
         
     }
@@ -57,9 +57,10 @@ public class Pokeri {
             System.out.println(" and action!");
 
             player.hand.discardAll();
+            gui.hand.removeCards();
             deck.shuffle();
             deck.dealCards(player.hand);
-            gui.dealCards(player.hand.getCardValues());
+            gui.hand.dealCards(player.hand.getCardValues());
             state = States.PLAYER_SELECT;
         }
      

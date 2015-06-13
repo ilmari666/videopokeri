@@ -14,10 +14,9 @@ import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-
-import javax.swing.JPanel;
-import javax.swing.JFrame;
 import javax.swing.ImageIcon;
+
+
 
 public class Card extends JPanel {
     public static int CARD_WIDTH = 79;
@@ -31,6 +30,7 @@ public class Card extends JPanel {
             img = new ImageIcon(Card.class.getResource("/img/cards.png")).getImage();
         }
         Dimension size = new Dimension(CARD_WIDTH, CARD_HEIGHT);
+
         setSize(size);
         setPreferredSize(size);
         setLayout(null);
