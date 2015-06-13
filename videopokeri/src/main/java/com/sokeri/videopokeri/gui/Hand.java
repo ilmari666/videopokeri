@@ -34,28 +34,7 @@ public class Hand extends JComponent {
         setLayout(null);
     }
 
-    /**
-     * Test if a card was clicked by a simple bounding box test.
-     * @return -1 if no cards were matched, otherwise the cards index in hand
-     */
-    public int testClick(int x,int y){
-        
-        for (int i = 0; i < cards.length; i++){
-            CardGraphics card = cards[i];
-            if (card != null){
-                int cardX = card.getX();
-                int cardY = card.getY();
-
-                if (x>=cardX && x<cardX+CardGraphics.CARD_WIDTH && y>=cardY && cardY<cardY+CardGraphics.CARD_HEIGHT){
-                   return i;
-                }
-            } else {
-                System.out.println("null..");
-            }
-        }
-        return -1;
-    }
-   
+    
     /**
      * remove all cards from the hand
      */

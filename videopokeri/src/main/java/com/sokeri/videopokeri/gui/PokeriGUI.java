@@ -17,6 +17,7 @@ import javax.swing.*;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JComponent;
 import java.net.URL;
 import java.awt.Dimension;
@@ -31,6 +32,7 @@ import java.awt.event.WindowAdapter;
 
 
 import com.sokeri.videopokeri.Pokeri;
+import java.text.DecimalFormat;
 
 
 public class PokeriGUI  {
@@ -40,6 +42,7 @@ public class PokeriGUI  {
     */
     JFrame window;
     JPanel cards;
+    JLabel money;
     public Hand hand;
     Buttons buttons;
     EventListener listener;
@@ -53,14 +56,26 @@ public class PokeriGUI  {
         window.setResizable(false);
         window.setVisible(true);
         window.setSize(640,400);
-        this.buttons = createButtons();
-
-        
+        //this.buttons = createButtons();
+        this.buttons = new Buttons(listener);
+        money = new JLabel();
+        money.setSize(100,100);
+        money.setLocation(300,275);
  
         hand = new Hand(handSize, window, listener);
-      
+        /*
+        Card card = new Card(0);
+        card.setLocation(0,0);
+        table.add(card);
+        card = new Card(1);
+        card.setLocation(200,0);
+        table.add(card);
+       */
+
+        
         window.getContentPane().add(buttons);
         window.getContentPane().add(hand);
+        window.getContentPane().add(money);
         window.setFocusable(true);
         window.setFocusTraversalKeysEnabled(false);
         window.addKeyListener(new KeyboardListener(hand));
@@ -69,6 +84,14 @@ public class PokeriGUI  {
         window.repaint();
     }
     
+    public void updateMoney(long balance){
+        DecimalFormat df = new DecimalFormat(".00");
+        System.out.println(df.format(balance/100));
+        System.out.println(money);
+        money.setText("Saldo: "+df.format(balance/100)+"mk");
+    }
+
+    /*
     public Buttons createButtons(){
         Buttons btns = new Buttons();
         JButton placeBet = new JButton("play");
@@ -77,10 +100,19 @@ public class PokeriGUI  {
         placeBet.setMargin(new Insets(0, 0, 0, 0));
         placeBet.addActionListener(listener);
         btns.add(placeBet);
+     
+        JButton stepBet = new JButton("step_bet");
+        stepBet.setLocation(120,100);
+        stepBet.setSize(100,50);
+        stepBet.setMargin(new Insets(0, 0, 0, 0));
+        stepBet.addActionListener(listener);
+        btns.add(stepBet);
         btns.setLocation(0,200);
+        
         return btns;
     }
- 
+ */
+        
     private ImageIcon loadImageIcon(String src){
 
         URL imgURL = PokeriGUI.class.getResource(src);

@@ -18,7 +18,10 @@ public class CardListener implements MouseListener {
 
     @Override
       public void mousePressed(MouseEvent e) {
-          int result = hand.testClick(e.getX(), e.getY());
+          
+          
+          
+          int result = testClick(e.getX(), e.getY());
           if (result != -1){
               hand.toggleLock(result);
           }
@@ -38,5 +41,26 @@ public class CardListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-    
+    /**
+     * Test if a card was clicked by a simple bounding box test.
+     * @param x x-coordinate
+     * @param y y-coordinate
+     * @return -1 if no cards were matched, otherwise the cards index in hand
+     */
+    public int testClick(int x,int y){
+        CardGraphics [] cards = hand.cards;
+        for (int i = 0; i < cards.length; i++){
+            CardGraphics card = cards[i];
+            if (card != null){
+                int cardX = card.getX();
+                int cardY = card.getY();
+
+                if (x>=cardX && x<cardX+CardGraphics.CARD_WIDTH && y>=cardY && cardY<cardY+CardGraphics.CARD_HEIGHT){
+                   return i;
+                }
+            }
+        }
+        return -1;
+    }
+   
 }

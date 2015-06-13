@@ -27,7 +27,6 @@ public class CardGraphics extends JPanel {
     public boolean locked;
     public boolean lockable;
     public CardGraphics(int idx){
-        System.out.println("create card "+idx);
         index = idx;
         if (img == null){
             img = new ImageIcon(CardGraphics.class.getResource("/img/cards.png")).getImage();

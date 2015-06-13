@@ -8,6 +8,8 @@ import com.sokeri.videopokeri.Pokeri;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -19,14 +21,21 @@ public class EventListener implements ActionListener{
     public EventListener(Pokeri main, JFrame mainWindow){
         mainLogic = main;
         this.mainWindow = mainWindow;
+        System.out.println("EventListener");
     }
     @Override
     public void actionPerformed(ActionEvent evt) {
         String command = evt.getActionCommand();
-        if (command.equals("play")){
+        if (command.equals("Jaa")){
             mainLogic.continueRound();
+        } else if (command.indexOf("Panos")!=-1){
+            JButton source = (JButton)evt.getSource();
+            DecimalFormat df = new DecimalFormat(".00");
+            source.setText("Panos "+df.format(mainLogic.getBetHandler().step()/100)+"mk");
+        } else {
+             System.out.println(command);
         }
-        System.out.println(command);
-    //    mainWindow.requestFocusInWindow(true);
     }
+
+
 }

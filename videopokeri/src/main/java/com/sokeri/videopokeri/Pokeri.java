@@ -24,12 +24,12 @@ import com.sokeri.videopokeri.logic.Card;
 public class Pokeri {
   
     private final Deck deck;
-    private enum States {DEPOSIT, PLACE_BET, PLAYER_SELECT, DOUBLE};
-    private States state;
+    public enum States {DEPOSIT, PLACE_BET, PLAYER_SELECT, DOUBLE};
+    public States state;
     private Player player;
     private BetHandler betHandler;
     private PokerMath math;
-    private PokeriGUI gui;
+    public PokeriGUI gui;
     
     
     public Pokeri(){
@@ -37,11 +37,11 @@ public class Pokeri {
          * @todo need to sort out the flow between states
         */
         this.math = new PokerMath("/math.json");
-        this.betHandler = new BetHandler(math.betSteps);
-        state = States.PLACE_BET; //States.DEPOSIT;
         deck = new Deck(true,1); // create a full deck with one joker
         player = new Player();
-        gui = new PokeriGUI(this, player.hand.getSize());
+        this.betHandler = new BetHandler(this, math.betSteps, player);
+        state = States.PLACE_BET; //States.DEPOSIT;
+        this.gui = new PokeriGUI(this, player.hand.getSize());
         
         
     }
@@ -65,7 +65,9 @@ public class Pokeri {
             debugHand();
             gui.hand.dealCards(player.hand.getCardValues());
             gui.hand.setLockableState(true);
+            gui.updateMoney(player.getBalance());
             state = States.PLAYER_SELECT;
+
         }
      
         return false;
@@ -93,7 +95,7 @@ public class Pokeri {
             if (result.win != null){
                 System.out.println(result);
                 player.addMoney(result.getWinSum());
-                // gfx display result etc
+                gui.updateMoney(player.getBalance());
             }
             System.out.println("Player money: "+player.getBalance());
         }
@@ -123,16 +125,11 @@ public class Pokeri {
         }
     }
     public static void main(String[] args) {
-        
         Pokeri poker = new Pokeri();
         Player player = poker.getPlayer();
         BetHandler betHandler = poker.getBetHandler();
         player.addMoney(10000);
-        betHandler.step(player);
-//        poker.startRound();
-//        poker.lockAndDeal(new int[]{2,3});
-        
-        
+        poker.gui.updateMoney(player.getBalance());
         
     }
 }
