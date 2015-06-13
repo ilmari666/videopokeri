@@ -96,6 +96,7 @@ public class Pokeri {
                 System.out.println(result);
                 player.addMoney(result.getWinSum());
                 gui.updateMoney(player.getBalance());
+                gui.hand.highlight(result.winningCards);
             }
             System.out.println("Player money: "+player.getBalance());
         }
