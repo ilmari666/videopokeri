@@ -27,16 +27,16 @@ public class Match {
      * @param win win to be compared against to
      * @param wildCards number of wildcards in the hand 
      */
-    public Match(Card[] cards, Win win, int wildCards){
+    public Match(Card[] cards, Win win){
         this.cards = cards;
-        this.wildCards = wildCards;
         this.win = win;
         Rule [] pattern = win.getPattern().pattern;
         int s;
-        int x, y, matched, cardCount = this.cards.length;
+        int x, y, matched =0, cardCount = this.cards.length;
         Card card;
         Rule rule;
-        
+ 
+        // 7 7 5 6 6
         for (int i=0;i<cardCount;i++){
             matched = 0;
             used = new boolean[cardCount]; // todo reset instead of recreating
@@ -48,12 +48,14 @@ public class Match {
                 rule = pattern[j];
                 card = this.cards[i];
                 int cardToBeTestedIndex = i;
-                for (int k=0;k<=cardCount;k++){
+                card_loop:
+                for (int k=cardCount; k>=0; k--){
                     if (!used[cardToBeTestedIndex] && card != null){
                         boolean matches = true;
                         if (card.isWild()){
                             matched++;
                             used[cardToBeTestedIndex] = true;
+
                             continue rule_loop;
                         }
                         if (rule.testSuite){
@@ -74,6 +76,7 @@ public class Match {
                         } else if (rule.testY){
                             if (y == -1){
                                 y = card.value;
+
                             } else {
                                 if (!(card.value == 1 && y+rule.offset == 14)){ // skip if we're looking for an ace to finish off a straight
                                     matches &= (card.value == y+rule.offset);
@@ -88,18 +91,19 @@ public class Match {
                             continue rule_loop;
                         }
                     }
-                    if (k!=cardCount){
-                        card = cards[k];
-                        cardToBeTestedIndex = k;
+                    if (k!=0){
+                        card = cards[k-1];
+                        cardToBeTestedIndex = k-1;
                     }
                 }
             }
             
-            if (matched+wildCards>=pattern.length){
+            if (matched>=pattern.length){
                 this.isMatch = true;
                 break;
             }
-        }        
+        }
+
     }
     
 }

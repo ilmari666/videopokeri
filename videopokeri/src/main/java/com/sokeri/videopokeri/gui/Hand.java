@@ -82,6 +82,10 @@ public class Hand extends JComponent {
             cards[idx]=null;
         }
     }
+    /**
+     * Highlights winning cards
+     * @param hits boolean[] cards used in win
+     */
     public void highlight(boolean[] hits){
         for (int i = 0; i < hits.length; i++){
             if (hits[i]){

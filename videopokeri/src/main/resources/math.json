@@ -12,13 +12,13 @@
             "multiplier": 5
 	},
 	{
-            "name": "staightflush",
+            "name": "straightflush",
             "pattern": "xs,xs+1,xs+2,xs+3,xs+4",
             "multiplier": 5
 	},
 	{
             "name": "fourofakind",
-            "pattern": "x,x,x,x,x",
+            "pattern": "x,x,x,x",
             "multiplier": 5
 	},
 	{

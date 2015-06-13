@@ -54,7 +54,7 @@ public class MatchTest {
          raw.name = "teststraight";
          Win straight = new Win(raw);
          
-         Match result = new Match (hand.getCards(), straight, 0);
+         Match result = new Match (hand.getCards(), straight);
          assertEquals(true, result.isMatch);
      }
      
@@ -71,7 +71,7 @@ public class MatchTest {
          raw.name = "testtwopair";
          Win twopair = new Win(raw);
          
-         Match result = new Match (hand.getCards(), twopair, 0);
+         Match result = new Match (hand.getCards(), twopair);
          assertEquals(true, result.isMatch);
      }
      
@@ -88,7 +88,7 @@ public class MatchTest {
          raw.multiplier = 4;
          raw.name = "teststraight";
          Win acehighstraight = new Win(raw);
-         Match result = new Match(cards, acehighstraight, 0);
+         Match result = new Match(cards, acehighstraight);
          assertEquals(true, result.isMatch);
      }
      
@@ -106,7 +106,7 @@ public class MatchTest {
          raw.name = "testtwopair";
          Win twopair = new Win(raw);
          
-         Match result = new Match (hand.getCards(), twopair, 0);
+         Match result = new Match (hand.getCards(), twopair);
          assertEquals(false, result.isMatch);
      }
      
@@ -124,20 +124,60 @@ public class MatchTest {
          raw.name = "testflush";
          Win flush = new Win(raw);
          
-         Match result = new Match (hand.getCards(), flush, 0);
+         Match result = new Match (hand.getCards(), flush);
          assertEquals(true, result.isMatch);
      }
+     
+    @Test
+    public void testTwoPair2(){
+         Hand hand = new Hand();
+         hand.deal(new Card(6));
+         hand.deal(new Card(4));
+         hand.deal(new Card(2));
+         hand.deal(new Card(4));
+         hand.deal(new Card(2));
+         
+         RawWin raw =  new RawWin();
+         raw.pattern = "x,x,y,y";
+         raw.multiplier = 4;
+         raw.name = "testtwopair";
+         Win twopair = new Win(raw);
+         
+         Match result = new Match (hand.getCards(), twopair);
+         assertEquals(true, result.isMatch);
+    }
+    
+    
+    @Test
+    public void testStraight2(){
+         Hand hand = new Hand();
+         hand.deal(new Card(7));
+         hand.deal(new Card(7));
+         hand.deal(new Card(5));
+         hand.deal(new Card(6));
+         hand.deal(new Card(6));
+         
+         RawWin raw =  new RawWin();
+         raw.pattern = "x,x+1,x+2,x+3,x+4";
+         raw.multiplier = 4;
+         raw.name = "teststraight";
+         Win straight = new Win(raw);
+         
+         Match result = new Match (hand.getCards(), straight);
+         assertEquals(false, result.isMatch);
+    }
 /**
  * 
  fail: 
  * 
  * 
-0 Qc
-1 8c
-2 **
-3 Kc
-4 Ac
-pair 200mk [Z@7c2f2087
+0 7d
+1 7s
+2 5s
+3 6s
+4 6d
+straight 500mk [Z@7fee6f88
+Player money: 11300
 * 
 * 
 * 

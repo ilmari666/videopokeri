@@ -63,16 +63,6 @@ public class PokeriGUI  {
         money.setLocation(300,275);
  
         hand = new Hand(handSize, window, listener);
-        /*
-        Card card = new Card(0);
-        card.setLocation(0,0);
-        table.add(card);
-        card = new Card(1);
-        card.setLocation(200,0);
-        table.add(card);
-       */
-
-        
         window.getContentPane().add(buttons);
         window.getContentPane().add(hand);
         window.getContentPane().add(money);
@@ -86,32 +76,9 @@ public class PokeriGUI  {
     
     public void updateMoney(long balance){
         DecimalFormat df = new DecimalFormat(".00");
-        System.out.println(df.format(balance/100));
-        System.out.println(money);
         money.setText("Saldo: "+df.format(balance/100)+"mk");
     }
 
-    /*
-    public Buttons createButtons(){
-        Buttons btns = new Buttons();
-        JButton placeBet = new JButton("play");
-        placeBet.setLocation(0,100);
-        placeBet.setSize(100,50);
-        placeBet.setMargin(new Insets(0, 0, 0, 0));
-        placeBet.addActionListener(listener);
-        btns.add(placeBet);
-     
-        JButton stepBet = new JButton("step_bet");
-        stepBet.setLocation(120,100);
-        stepBet.setSize(100,50);
-        stepBet.setMargin(new Insets(0, 0, 0, 0));
-        stepBet.addActionListener(listener);
-        btns.add(stepBet);
-        btns.setLocation(0,200);
-        
-        return btns;
-    }
- */
         
     private ImageIcon loadImageIcon(String src){
 

@@ -55,7 +55,7 @@ public class CardListener implements MouseListener {
                 int cardX = card.getX();
                 int cardY = card.getY();
 
-                if (x>=cardX && x<cardX+CardGraphics.CARD_WIDTH && y>=cardY && cardY<cardY+CardGraphics.CARD_HEIGHT){
+                if (x>=cardX && x<cardX+CardGraphics.CARD_WIDTH && y>=cardY && y<cardY+CardGraphics.CARD_HEIGHT){
                    return i;
                 }
             }
