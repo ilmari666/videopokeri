@@ -13,6 +13,7 @@ import com.sokeri.videopokeri.money.Player;
 import com.sokeri.videopokeri.money.BetHandler;
 import com.sokeri.videopokeri.logic.Result;
 import com.sokeri.videopokeri.gui.PokeriGUI;
+import com.sokeri.videopokeri.logic.Card;
 /**
  *
  * @author Ilmari
@@ -29,6 +30,7 @@ public class Pokeri {
     private BetHandler betHandler;
     private PokerMath math;
     private PokeriGUI gui;
+    
     
     public Pokeri(){
         /**
@@ -54,12 +56,13 @@ public class Pokeri {
  
         // place bet and deal the first round of cards
         if (state == States.PLACE_BET && player.placeBet(betHandler.getBet()) != 0){
-            System.out.println(" and action!");
+            System.out.println("Start round successful!");
 
             player.hand.discardAll();
             gui.hand.removeCards();
             deck.shuffle();
             deck.dealCards(player.hand);
+            debugHand();
             gui.hand.dealCards(player.hand.getCardValues());
             state = States.PLAYER_SELECT;
         }
@@ -72,11 +75,16 @@ public class Pokeri {
      * @param keptIndices card slots in player's hand that won't we swapped in the secondary deal
      * 
      */
-    public void lockAndDeal(int[] keptIndices){
+    public void lockAndDeal(){
+        int[] keptIndices = gui.hand.getLocked();
         Result result = null;
         if (state == States.PLAYER_SELECT){
+            System.out.println("Player select complete");
             player.hand.keep(keptIndices);
-            deck.dealCards(player.hand);
+            Card[] dealt = deck.dealCards(player.hand);
+            gui.hand.removeNonLockedCards();
+            gui.hand.dealCards(dealt);
+            debugHand();
             result = new Result(this.math.checkWins(player.hand), betHandler.getBet());
             if (result.win != null){
                 player.addMoney(result.getWinSum());
@@ -94,8 +102,20 @@ public class Pokeri {
         // for developement time use
         return this.betHandler;
     }
+    public void debugHand(){
+        Card [] playerCards = player.hand.getCards();
+        for (int i = 0; i < playerCards.length;i++){
+            System.out.println(i+" "+playerCards[i]);
+        }
     
-    
+    }
+    public void continueRound(){
+        if (state == States.PLACE_BET){
+            startRound();
+        } else if (state == States.PLAYER_SELECT){
+            lockAndDeal();
+        }
+    }
     public static void main(String[] args) {
         
         Pokeri poker = new Pokeri();

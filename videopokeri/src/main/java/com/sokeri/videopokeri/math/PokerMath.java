@@ -51,7 +51,6 @@ public class PokerMath {
         int wildCount = hand.getCards().length - cards.length; // returns invalid count if  hand not full
     
         for (int i=0, len = this.wins.length; i<len; i++){
-            System.out.println("i "+i);
             Match match = new Match (cards, this.wins[i], wildCount);
             if (match.isMatch){
                 return match;

@@ -5,6 +5,7 @@
  */
 package com.sokeri.videopokeri.gui;
 import javax.swing.JComponent;
+import com.sokeri.videopokeri.logic.Card;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -15,7 +16,7 @@ import javax.swing.JButton;
  * @author Ilmari
  */
 public class Hand extends JComponent {
-    Card[] cards;
+    CardGraphics[] cards;
     public int size;
     EventListener listener;
     boolean[] lockedCards;
@@ -27,13 +28,33 @@ public class Hand extends JComponent {
         this.size = size;
         this.parent = parent;
         this.listener = listener;
-        cards = new Card[size];
+        cards = new CardGraphics[size];
         lockedCards = new boolean[size];
         setSize(640,400);
         setLayout(null);
     }
 
-    
+    /**
+     * Test if a card was clicked by a simple bounding box test.
+     * @return -1 if no cards were matched, otherwise the cards index in hand
+     */
+    public int testClick(int x,int y){
+        
+        for (int i = 0; i < cards.length; i++){
+            CardGraphics card = cards[i];
+            if (card != null){
+                int cardX = card.getX();
+                int cardY = card.getY();
+
+                if (x>=cardX && x<cardX+CardGraphics.CARD_WIDTH && y>=cardY && cardY<cardY+CardGraphics.CARD_HEIGHT){
+                   return i;
+                }
+            } else {
+                System.out.println("null..");
+            }
+        }
+        return -1;
+    }
    
     /**
      * remove all cards from the hand
@@ -49,6 +70,12 @@ public class Hand extends JComponent {
         repaint();
         parent.repaint();
     }
+    
+    public void toggleLock(int index){
+        if (cards[index] != null){
+            cards[index].toggleLock();
+        }
+    }
     /**
      * remove selected cards from hand ie keep them 'locked'
      * @param indices 
@@ -56,34 +83,95 @@ public class Hand extends JComponent {
     public void removeCards(int[] indices){
         for (int i = 0;i<indices.length;i++){
             int idx = indices[i];
-            if (cards[idx] != null){
-                remove(cards[idx]);
-                cards[idx]=null;
+            removeCard(idx);
+        }
+        repaint();
+        parent.repaint();
+    }
+    public void removeCard(int idx){
+        if (cards[idx] != null){
+            remove(cards[idx]);
+            cards[idx]=null;
+        }
+    }
+    
+    public void removeNonLockedCards(){
+        for (int i = 0;i<cards.length;i++){
+            if (cards[i] != null){
+                if (cards[i].locked == false){
+                    remove(cards[i]);
+                    cards[i]=null;
+                }
             }
         }
         repaint();
         parent.repaint();
     }
 
-    public void dealCards(int[] cards){
-         System.out.println("gui dealCards");
-//        JPanel content = new JPanel();
-  //      window.setContentPane(content);
-        for (int i=0; i<cards.length; i++){
-            if (cards[i] != -1){
-                Card card = new Card(cards[i]);
+    public int countLocked(){
+        int count = 0;
+        for (CardGraphics card : cards) {
+            if (card.locked) {
+                count++;
+            }
+        }
+        return count;
+    }
+    public int[] getLocked(){
+        int [] locked = new int[countLocked()];
+        int cursor = 0;
+        for (int i = 0; i < cards.length;i++){
+            if (cards[i].locked){
+                locked[cursor] = i;
+                cursor++;
+            }
+        }
+        return locked;
+    }
+    
+    /**
+     * Turn logical cards in to visual ones and deal them
+     * @param dealtCards Array of cards to be dealt
+     */
+    public void dealCards(Card[] dealtCards){
+        for (Card dealtCard : dealtCards) {
+            dealCard(new CardGraphics(dealtCard.getValueAsInt()));
+        }
+    }
+    /**
+     * Turn logical cards in to visual ones and deal them
+     * @param dealtCards Array of card values to be dealt
+     */
+    public void dealCards(int[] dealtCards){
+        for (int i=0; i<dealtCards.length; i++){
+            if (dealtCards[i] != -1){
+                CardGraphics card = new CardGraphics(dealtCards[i]);
                 dealCard(card, i);
             }
         }
         repaint();
         parent.repaint();
     }
-    
-    public void dealCard(Card card, int location){
-        System.out.println("... "+location);
-       
-        card.setLocation(location*(Card.CARD_WIDTH+CARD_MARGIN),0);
-       // card.addActionListener(listener);
+    /**
+     * Find an empty slot and fit it with a card
+     * @param card 
+     */
+    public void dealCard(CardGraphics card){
+        for (int i=0;i<this.cards.length;i++){
+            if (this.cards[i]==null){
+                dealCard(card,i);
+                break;
+            }
+        }
+    }
+    /**
+     * Deals a new card in to a predefined slot (taken or not)
+     * @param card
+     * @param location slot #
+     */
+    public void dealCard(CardGraphics card, int location){
+        this.cards[location] = card;
+        card.setLocation(location*(CardGraphics.CARD_WIDTH+CARD_MARGIN),0);
         add(card);
     }
 }

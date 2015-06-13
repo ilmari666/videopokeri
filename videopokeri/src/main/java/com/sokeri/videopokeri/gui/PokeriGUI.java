@@ -44,7 +44,7 @@ public class PokeriGUI  {
     Buttons buttons;
     EventListener listener;
     public PokeriGUI(Pokeri pokeri, int handSize) {
-        this.listener = new EventListener(pokeri);
+        this.listener = new EventListener(pokeri, window);
         window = new JFrame("Videopokeri");
         window.setLayout(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,28 +58,20 @@ public class PokeriGUI  {
         
  
         hand = new Hand(handSize, window, listener);
-        /*
-        Card card = new Card(0);
-        card.setLocation(0,0);
-        table.add(card);
-        card = new Card(1);
-        card.setLocation(200,0);
-        table.add(card);
-       */
-
-        
+      
         window.getContentPane().add(buttons);
         window.getContentPane().add(hand);
         window.setFocusable(true);
         window.setFocusTraversalKeysEnabled(false);
         window.addKeyListener(new KeyboardListener(hand));
+        window.addMouseListener(new CardListener(hand));
 
         window.repaint();
     }
     
     public Buttons createButtons(){
         Buttons btns = new Buttons();
-        JButton placeBet = new JButton("place_bet");
+        JButton placeBet = new JButton("play");
         placeBet.setLocation(0,100);
         placeBet.setSize(100,50);
         placeBet.setMargin(new Insets(0, 0, 0, 0));

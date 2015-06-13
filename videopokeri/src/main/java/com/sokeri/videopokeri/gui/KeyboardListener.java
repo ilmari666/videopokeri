@@ -24,6 +24,7 @@ public class KeyboardListener extends KeyAdapter {
         for (int i=1;i<=hand.size;i++){
             if (keyCode == (""+i).charAt(0)){
                 System.out.println("Toggle lock "+i);
+                hand.toggleLock(i);
             }
         }
     }

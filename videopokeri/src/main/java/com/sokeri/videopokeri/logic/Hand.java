@@ -18,7 +18,6 @@ public class Hand {
     
     public Hand(){
         cards = new Card[SIZE];
-        System.out.println("hand! "+cards.length);
     }
     
     public Hand(int size){

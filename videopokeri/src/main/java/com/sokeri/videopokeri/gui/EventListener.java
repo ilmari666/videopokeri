@@ -7,21 +7,26 @@ package com.sokeri.videopokeri.gui;
 import com.sokeri.videopokeri.Pokeri;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 
 /**
  *
- * @author makktonnikala
+ * @author ilmari
  */
 public class EventListener implements ActionListener{
     Pokeri mainLogic;
-    public EventListener(Pokeri main){
+    JFrame mainWindow;
+    public EventListener(Pokeri main, JFrame mainWindow){
         mainLogic = main;
+        this.mainWindow = mainWindow;
     }
+    @Override
     public void actionPerformed(ActionEvent evt) {
         String command = evt.getActionCommand();
-        if (command.equals("place_bet")){
-            mainLogic.startRound();
+        if (command.equals("play")){
+            mainLogic.continueRound();
         }
         System.out.println(command);
+    //    mainWindow.requestFocusInWindow(true);
     }
 }
