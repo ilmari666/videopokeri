@@ -109,4 +109,53 @@ public class MatchTest {
          Match result = new Match (hand.getCards(), twopair, 0);
          assertEquals(false, result.isMatch);
      }
+     
+     @Test
+     public void testFlush(){
+         Hand hand = new Hand();
+         hand.deal(new Card(3));
+         hand.deal(new Card(4));
+         hand.deal(new Card(7));
+         hand.deal(new Card(8));
+         hand.deal(new Card(9));
+         RawWin raw =  new RawWin();
+         raw.pattern = "s,s,s,s,s";
+         raw.multiplier = 4;
+         raw.name = "testflush";
+         Win flush = new Win(raw);
+         
+         Match result = new Match (hand.getCards(), flush, 0);
+         assertEquals(true, result.isMatch);
+     }
+/**
+ * 
+ fail: 
+ * 
+ * 
+0 Qc
+1 8c
+2 **
+3 Kc
+4 Ac
+pair 200mk [Z@7c2f2087
+* 
+* 
+* 
+ * 0 9d
+1 Th
+2 Qh
+3 Tc
+4 Qs
+straight 1000mk [Z@1e20d04b
+ 
+ */
+     
+/*
+     
+     0 **
+1 8d
+2 Qd
+3 5d
+4 5h
+     */
 }

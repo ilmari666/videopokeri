@@ -43,15 +43,17 @@ public class PokerMath {
      * @return match instance if one is found
      */
     public Match checkWins(Hand hand){
-        Card[] cards = hand.getCardsWithoutWilds(); // get cards to be tested
+       // Card[] cards = hand.getCardsWithoutWilds(); // get cards to be tested
 
         //Arrays.sort(cards); // sort them for easy matching
        // if rising +1 +2 strings would be reversed you could reverse the win check sort would also get biggest pairs first in games played with larger than five card decks. ie 22 44 55 would yield 55 and 44
         // still needs to address the ace issue in pair comparison and in straights
-        int wildCount = hand.getCards().length - cards.length; // returns invalid count if  hand not full
-    
+       // int wildCount = hand.getCards().length - cards.length; // returns invalid count if  hand not full
+   //     System.out.println("wildcount = "+wildCount);
+        Card[] cards = hand.getCards();
         for (int i=0, len = this.wins.length; i<len; i++){
-            Match match = new Match (cards, this.wins[i], wildCount);
+            Match match = new Match (cards, this.wins[i], 0);
+            System.out.println("testing "+match.win.getName()+"....");
             if (match.isMatch){
                 return match;
             }

@@ -25,6 +25,7 @@ public class CardGraphics extends JPanel {
     private static Image img;
     private int index;
     public boolean locked;
+    public boolean lockable;
     public CardGraphics(int idx){
         System.out.println("create card "+idx);
         index = idx;
@@ -39,8 +40,19 @@ public class CardGraphics extends JPanel {
      }
 
     public void toggleLock (){
-        this.locked = !locked;
-         repaint();
+        if (lockable){
+            this.locked = !locked;
+            repaint();
+        }
+    }
+    /**
+     * set state to non lockable
+     * @param lockable allow locking
+     */
+    public void setLockableState(boolean lockable){
+        this.lockable = lockable;
+        this.locked = false;
+        repaint();
     }
     
     @Override

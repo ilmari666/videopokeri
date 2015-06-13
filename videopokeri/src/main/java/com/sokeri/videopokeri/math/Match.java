@@ -32,7 +32,7 @@ public class Match {
         this.wildCards = wildCards;
         this.win = win;
         Rule [] pattern = win.getPattern().pattern;
-        Suite s;
+        int s;
         int x, y, matched, cardCount = this.cards.length;
         Card card;
         Rule rule;
@@ -40,9 +40,10 @@ public class Match {
         for (int i=0;i<cardCount;i++){
             matched = 0;
             used = new boolean[cardCount]; // todo reset instead of recreating
-            s = null;
+            s = -1;
             x = -1;
             y = -1;
+            rule_loop:
             for (int j=0;j<pattern.length;j++){
                 rule = pattern[j];
                 card = this.cards[i];
@@ -50,8 +51,17 @@ public class Match {
                 for (int k=0;k<=cardCount;k++){
                     if (!used[cardToBeTestedIndex] && card != null){
                         boolean matches = true;
+                        if (card.isWild()){
+                            matched++;
+                            used[cardToBeTestedIndex] = true;
+                            continue rule_loop;
+                        }
                         if (rule.testSuite){
-                            matches &= (card.suite == s);
+                            if (s == -1){
+                                s = card.suite.getValue();
+                            } else {
+                                matches &= (s == card.suite.getValue());
+                            }
                         }
                         if (rule.testX){
                             if (x == -1){
@@ -75,6 +85,7 @@ public class Match {
                         if (matches){
                             matched++;
                             used[cardToBeTestedIndex]=true;
+                            continue rule_loop;
                         }
                     }
                     if (k!=cardCount){

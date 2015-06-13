@@ -27,6 +27,9 @@ public class Player {
     public void addMoney(long sum){
         this.wallet.deposit(sum);
     }
+    public long getBalance(){
+        return wallet.getBalance();
+    }
     /**
      * used to withdraw money from a players account
      * @param sum how much to bet

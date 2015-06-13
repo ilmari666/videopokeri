@@ -118,10 +118,13 @@ public class Hand {
             if (card!=null && !card.isWild()){
                 returnedCards[cursor] = card;
                 cursor++;
+            } else if (card.isWild()){
+               
             }
         }
         return returnedCards;
     }
+
     /**
      * returns all cards (and also null slots)
      * @return the array representing the players hand

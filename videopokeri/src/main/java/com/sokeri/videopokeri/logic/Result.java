@@ -32,5 +32,9 @@ public class Result {
     public long getWinSum(){
         return this.winSum;
     }
+    @Override
+    public String toString(){
+        return ""+(win.getName()+" "+winSum+"mk "+winningCards);
+    }
     
 }

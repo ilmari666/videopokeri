@@ -37,8 +37,11 @@
             "pattern": "x,x+1,x+2,x+3,x+4",
             "multiplier": 5
 	},
-
-
+	{
+            "name": "threeofakind",
+            "pattern": "x,x,x",
+            "multiplier": 3
+	},
 	{
             "name": "twopairs",
             "pattern": "x,x,y,y",

@@ -64,6 +64,7 @@ public class Pokeri {
             deck.dealCards(player.hand);
             debugHand();
             gui.hand.dealCards(player.hand.getCardValues());
+            gui.hand.setLockableState(true);
             state = States.PLAYER_SELECT;
         }
      
@@ -76,20 +77,25 @@ public class Pokeri {
      * 
      */
     public void lockAndDeal(){
-        int[] keptIndices = gui.hand.getLocked();
-        Result result = null;
+     
         if (state == States.PLAYER_SELECT){
+            int[] keptIndices = gui.hand.getLocked();
+           
             System.out.println("Player select complete");
             player.hand.keep(keptIndices);
             Card[] dealt = deck.dealCards(player.hand);
             gui.hand.removeNonLockedCards();
+
             gui.hand.dealCards(dealt);
+            gui.hand.setLockableState(false);
             debugHand();
-            result = new Result(this.math.checkWins(player.hand), betHandler.getBet());
+            Result result = new Result(this.math.checkWins(player.hand), betHandler.getBet());
             if (result.win != null){
+                System.out.println(result);
                 player.addMoney(result.getWinSum());
                 // gfx display result etc
             }
+            System.out.println("Player money: "+player.getBalance());
         }
         // check for remaining money (-> state.deposit)
         state = States.PLACE_BET;

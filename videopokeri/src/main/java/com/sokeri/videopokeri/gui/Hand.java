@@ -76,6 +76,15 @@ public class Hand extends JComponent {
             cards[index].toggleLock();
         }
     }
+    
+    public void setLockableState(boolean lockable){
+        for (int i = 0; i < cards.length; i++){
+            cards[i].setLockableState(lockable);
+        }
+        repaint();
+        parent.repaint();
+        
+    }
     /**
      * remove selected cards from hand ie keep them 'locked'
      * @param indices 

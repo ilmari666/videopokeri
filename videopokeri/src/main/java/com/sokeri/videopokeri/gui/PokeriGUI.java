@@ -81,7 +81,6 @@ public class PokeriGUI  {
         return btns;
     }
  
-        
     private ImageIcon loadImageIcon(String src){
 
         URL imgURL = PokeriGUI.class.getResource(src);

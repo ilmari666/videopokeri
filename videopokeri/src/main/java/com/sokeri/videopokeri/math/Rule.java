@@ -30,7 +30,7 @@ public class Rule {
     public void setRule(String rule){
        String[] tmp = rule.split("");
         // we do an ugly chew to create beauty and effectiveness in the live rule matching
-        
+
         boolean complete = false;
 //        for (String instruction : tmp) {
         for (int i=0;i<tmp.length;i++){
