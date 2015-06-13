@@ -49,7 +49,7 @@ public class Match {
                 card = this.cards[i];
                 int cardToBeTestedIndex = i;
                 card_loop:
-                for (int k=cardCount; k>=0; k--){
+                for (int k=0; k<=cardCount; k++){
                     if (!used[cardToBeTestedIndex] && card != null){
                         boolean matches = true;
                         if (card.isWild()){
@@ -91,12 +91,20 @@ public class Match {
                             continue rule_loop;
                         }
                     }
-                    if (k!=0){
-                        card = cards[k-1];
-                        cardToBeTestedIndex = k-1;
+                    //if (k!=cardToBeT){
+                    int next = cards.length-k-i;
+                    while(next<0){
+                        next+=cards.length;
+                    }
+                    while(next>=cards.length){
+                        next-=cards.length;
+                    }
+                    card = cards[next];
+                    cardToBeTestedIndex=next;
+                      //  cardToBeTestedIndex = k-1;
                     }
                 }
-            }
+            //}
             
             if (matched>=pattern.length){
                 this.isMatch = true;
