@@ -11,3 +11,4 @@ Tuntikirjanpito
 04/06 2h javadoc kommentointi
 08/06 3h javan graafisten kirjastoihin tutustuminen ja nenän nyrpistely
 10/06 4h javan graafisten kirjastojen tutustuminen ja nenän nyrpistely
+13/06 11h yksinkertaisen graafisen esityspinnan toteuttaminen
