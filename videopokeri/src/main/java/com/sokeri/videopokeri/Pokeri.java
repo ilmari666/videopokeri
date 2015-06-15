@@ -9,7 +9,7 @@ import com.sokeri.videopokeri.math.PokerMath;
 import com.sokeri.videopokeri.math.MathLoader;
 import com.sokeri.videopokeri.money.Wallet;
 import com.sokeri.videopokeri.logic.Deck;
-import com.sokeri.videopokeri.money.Player;
+import com.sokeri.videopokeri.player.Player;
 import com.sokeri.videopokeri.money.BetHandler;
 import com.sokeri.videopokeri.math.Result;
 import com.sokeri.videopokeri.gui.PokeriGUI;
@@ -40,8 +40,8 @@ public class Pokeri {
         deck = new Deck(true,1); // create a full deck with one joker
         player = new Player();
         this.betHandler = new BetHandler(this, math.betSteps, player);
-        state = States.PLACE_BET; //States.DEPOSIT;
         this.gui = new PokeriGUI(this, player.hand.getSize());
+        changeState(States.DEPOSIT);
         
         
     }
@@ -66,9 +66,7 @@ public class Pokeri {
             gui.hand.dealCards(player.hand.getCardValues());
             gui.hand.setLockableState(true);
             gui.updateMoney(player.getBalance());
-            state = States.PLAYER_SELECT;
-            gui.updateInfo("Lukitse haluamasi kortit ja jaa kierros loppuun");
-
+            changeState(States.PLAYER_SELECT);
         }
      
         return false;
@@ -98,12 +96,22 @@ public class Pokeri {
                 player.addMoney(result.winSum);
                 gui.updateMoney(player.getBalance());
                 gui.hand.highlight(result.winningCards);
+                
+            }
+            String winMessage = result.win != null ? "\""+result.win.getName()+"\" " : "";
+            if (player.canAfford(betHandler.getBet())){
+                changeState(States.PLACE_BET, winMessage);
+            } else if (betHandler.levelOfBetAfforded() != 0){
+                gui.updateBet(betHandler.step(true));
+                changeState(States.PLACE_BET, winMessage);
+            } else {
+                gui.updateBet(betHandler.step(true));
+                changeState(States.DEPOSIT, winMessage);
             }
             System.out.println("Player money: "+player.getBalance());
         }
         // check for remaining money (-> state.deposit)
-        state = States.PLACE_BET;
-        gui.updateInfo("Valitse panostaso ja aloita kierros.");
+
 
     }
     public Player getPlayer(){
@@ -121,6 +129,14 @@ public class Pokeri {
         }
     
     }
+    public void deposit(long sum){
+        player.addMoney(sum);
+        if (state == States.DEPOSIT){
+            System.out.println("change state");
+            changeState(States.PLACE_BET);
+        }
+        gui.updateMoney(player.getBalance());
+    }
     public void continueRound(){
         if (state == States.PLACE_BET){
             startRound();
@@ -128,14 +144,39 @@ public class Pokeri {
             lockAndDeal();
         }
     }
+    public void changeState(States newState){
+        changeState(newState, "");
+    }
+    public void changeState(States newState, String prefixMessage){
+        
+        switch (newState){
+            case PLACE_BET:
+                gui.updateInfo(prefixMessage+"Valitse panostaso ja aloita kierros.");
+                break;
+            case PLAYER_SELECT:
+                gui.updateInfo(prefixMessage+"Lukitse haluamasi kortit ja jaa kierros loppuun");
+                break;
+            case DEPOSIT:
+                gui.updateInfo(prefixMessage+"Talleta rahaa pelataksesi.");
+                break;
+            default:
+                break;
+        }
+        state = newState;
+                
+    }
+        
+
     public static void main(String[] args) {
         Pokeri poker = new Pokeri();
         Player player = poker.getPlayer();
         BetHandler betHandler = poker.getBetHandler();
+
+        /*
         player.addMoney(10000);
         poker.gui.updateMoney(player.getBalance());
         poker.gui.updateInfo("Valitse panostaso ja aloita kierros.");
-
+*/
         
     }
 }

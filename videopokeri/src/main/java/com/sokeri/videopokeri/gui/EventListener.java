@@ -18,10 +18,11 @@ import java.text.DecimalFormat;
 public class EventListener implements ActionListener{
     Pokeri mainLogic;
     JFrame mainWindow;
-    public EventListener(Pokeri main, JFrame mainWindow){
+    Buttons buttons;
+    public EventListener(Pokeri main, JFrame mainWindow, Buttons buttons){
         mainLogic = main;
         this.mainWindow = mainWindow;
-        System.out.println("EventListener");
+        this.buttons = buttons;
     }
     @Override
     public void actionPerformed(ActionEvent evt) {
@@ -29,12 +30,13 @@ public class EventListener implements ActionListener{
         if (command.equals("Jaa")){
             mainLogic.continueRound();
         } else if (command.indexOf("Panos")!=-1){
-            JButton source = (JButton)evt.getSource();
-            DecimalFormat df = new DecimalFormat(".00");
-            source.setText("Panos "+df.format(mainLogic.getBetHandler().step()/100)+"mk");
+            buttons.setBet(mainLogic.getBetHandler().step(false));
+        } else if (command.equals("Talleta 5.00mk")) {
+            mainLogic.deposit(500);
         } else {
              System.out.println(command);
         }
+              
     }
 
 

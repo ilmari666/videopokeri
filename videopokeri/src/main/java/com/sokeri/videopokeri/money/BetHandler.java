@@ -1,5 +1,6 @@
 
 package com.sokeri.videopokeri.money;
+import com.sokeri.videopokeri.player.Player;
 import com.sokeri.videopokeri.Pokeri;
 
 /**
@@ -9,7 +10,7 @@ import com.sokeri.videopokeri.Pokeri;
  */
 public class BetHandler {
     
-    int currentBetIndex = 0;
+    private int currentBetIndex = 0;
     protected long[] steps; // @TODO move to conf
     public long amount;
     public Player player;
@@ -32,23 +33,43 @@ public class BetHandler {
         return steps[currentBetIndex];
     }
     
+    public long levelOfBetAfforded(){
+        long balance = player.getBalance();
+        while (!player.canAfford(steps[currentBetIndex]) && currentBetIndex>0){
+            currentBetIndex--;
+        }
+        if (player.canAfford(steps[currentBetIndex])){
+            return steps[currentBetIndex];
+        }
+        return 0;
+    }
 
     /**
      * find next afforded bet or loop
      * @return current bet amount, 0 if player has not enough money for any bet
      * @param player the player is revealed as a parameter to check if he can afford the bet
      */
-    public long step(){
+   
+    public long step(boolean automatic){
         if (main.state == Pokeri.States.PLACE_BET){
+            int oldIndex = currentBetIndex;
+            
             if (currentBetIndex<steps.length-1){
                 currentBetIndex++;
             } else {
                 currentBetIndex = 0;
             }
-            while (currentBetIndex != 0 && !player.canAfford(steps[currentBetIndex])){
-                currentBetIndex--;
+            if (automatic){ // if triggered by the system
+                while (currentBetIndex != 0 && !player.canAfford(steps[currentBetIndex])){
+                    currentBetIndex--;
+                }
+            } else {
+                if (!player.canAfford(steps[currentBetIndex])){
+                    currentBetIndex = 0;
+                }
             }
         }
+        System.out.println(currentBetIndex);
         return this.steps[currentBetIndex];
     }
 }

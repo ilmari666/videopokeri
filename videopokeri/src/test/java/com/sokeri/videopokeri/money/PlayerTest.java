@@ -5,6 +5,7 @@
  */
 package com.sokeri.videopokeri.money;
 
+import com.sokeri.videopokeri.player.Player;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

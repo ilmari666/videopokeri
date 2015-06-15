@@ -52,7 +52,6 @@ public class PokeriGUI  {
     }
 
     public void buildGUI(Pokeri pokeri, int handSize){
-       this.listener = new EventListener(pokeri, window);
         window = new JFrame("Videopokeri");
         window.setLayout(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,15 +61,18 @@ public class PokeriGUI  {
         window.setVisible(true);
         window.setSize(640,400);
         //this.buttons = createButtons();
-        this.buttons = new Buttons(listener);
+        this.buttons = new Buttons();
+        this.listener = new EventListener(pokeri, window, this.buttons);
+        this.buttons.createButtons(this.listener);
+
         money = new JLabel();
         money.setSize(200,100);
-        money.setLocation(300,275);
+        money.setLocation(400,275);
 
         info = new JLabel();
         info.setSize(400,50);
         info.setLocation(0,0);
-        info.setText("Aloita kierros");
+
         
         hand = new Hand(handSize, window, listener);
         window.getContentPane().add(buttons);
@@ -92,7 +94,11 @@ public class PokeriGUI  {
     }
 
     public void updateInfo(String text){
-        info.setText(text);
+        System.out.println("updateInfo "+text);
+        this.info.setText(text);
+    }
+    public void updateBet(long sum){
+        this.buttons.setBet(sum);
     }
         
     private ImageIcon loadImageIcon(String src){

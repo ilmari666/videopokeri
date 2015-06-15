@@ -2,55 +2,50 @@
     "betSteps": [100,200,300,400,500],
     "wins":[
 	{
-            "name": "royalflush",
+            "name": "Kuningasvärisuora!",
             "pattern": "As,Ts,Js,Qs,Ks",
-            "multiplier": 6
+            "multiplier": 100
 	},
 	{
-            "name": "fiveofakind",
+            "name": "Viitoset!",
             "pattern": "x,x,x,x,x",
-            "multiplier": 5
+            "multiplier": 50
 	},
 	{
-            "name": "straightflush",
+            "name": "Värisuora!",
             "pattern": "xs,xs+1,xs+2,xs+3,xs+4",
-            "multiplier": 5
+            "multiplier": 30
 	},
 	{
-            "name": "fourofakind",
+            "name": "Neloset",
             "pattern": "x,x,x,x",
-            "multiplier": 5
+            "multiplier": 15
 	},
 	{
-            "name": "fullhouse",
+            "name": "Täyskäsi",
             "pattern": "x,x,x,y,y",
-            "multiplier": 4
+            "multiplier": 8
 	},
 	{
-            "name": "flush",
+            "name": "Väri",
             "pattern": "s,s,s,s,s",
-            "multiplier": 5
+            "multiplier": 4
 	},
 
 	{
-            "name": "straight",
+            "name": "Suora",
             "pattern": "x,x+1,x+2,x+3,x+4",
-            "multiplier": 5
+            "multiplier": 3
 	},
 	{
-            "name": "threeofakind",
+            "name": "Kolmoset",
             "pattern": "x,x,x",
-            "multiplier": 3
+            "multiplier": 2
 	},
 	{
-            "name": "twopairs",
+            "name": "Kaksi paria",
             "pattern": "x,x,y,y",
-            "multiplier": 3
-	},
-	{
-            "name": "pair",
-            "pattern": "x,x",
-            "multiplier": 1
+            "multiplier": 2
 	}
     ]
 }

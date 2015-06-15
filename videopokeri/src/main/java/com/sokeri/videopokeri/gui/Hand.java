@@ -89,7 +89,7 @@ public class Hand extends JComponent {
     public void highlight(boolean[] hits){
         for (int i = 0; i < hits.length; i++){
             if (hits[i]){
-                cards[i].setLocation(cards[i].getX(),30);
+                cards[i].setLocation(cards[i].getX(),40);
             }
         }
     }
