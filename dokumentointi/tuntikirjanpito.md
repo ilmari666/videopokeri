@@ -12,3 +12,4 @@ Tuntikirjanpito
 08/06 3h javan graafisten kirjastoihin tutustuminen ja nenän nyrpistely
 10/06 4h javan graafisten kirjastojen tutustuminen ja nenän nyrpistely
 13/06 11h yksinkertaisen graafisen esityspinnan toteuttaminen
+15/06 6h uusi luokkakaavio, checkstyle fiksit, refaktorointia, guin informatiivisuuden parantamista
