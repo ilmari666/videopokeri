@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sokeri.videopokeri.math;
 
 import com.sokeri.videopokeri.logic.Hand;
@@ -15,23 +10,26 @@ import java.util.Arrays;
 public class PokerMath {
     private Win[] wins;
     public long[] betSteps;
+    public boolean loaded;
     /**
      * Creates a PokerMath instance
      * @param src JSON configuration source to be mapped to a MathConfig instance
      */
-    public PokerMath (String src){
+    public PokerMath(String src) {
         MathLoader loader = new MathLoader();
         MathConfig config = loader.load(src);
-        this.wins = config.getWins();
-        
-        this.betSteps = config.getBetSteps();
+        if (config != null) {
+            this.wins = config.getWins();
+            this.betSteps = config.getBetSteps();
+            this.loaded = true;
+        }
     }
     
-    public PokerMath(){
+    public PokerMath() {
         
     }
  
-    public void setWins(Win[] wins){
+    public void setWins(Win[] wins) {
         // for developement
         this.wins = wins;
     }
@@ -42,7 +40,7 @@ public class PokerMath {
      * @param hand Players hand
      * @return match instance if one is found
      */
-    public Result checkWins(Hand hand, long bet){
+    public Result checkWins(Hand hand, long bet) {
        // Card[] cards = hand.getCardsWithoutWilds(); // get cards to be tested
 
         //Arrays.sort(cards); // sort them for easy matching
@@ -50,9 +48,9 @@ public class PokerMath {
         // still needs to address the ace issue in pair comparison and in straights
 
         Card[] cards = hand.getCards();
-        for (int i=0, len = this.wins.length; i<len; i++){
-            Match match = new Match (cards, this.wins[i]);
-            if (match.isMatch){
+        for (int i = 0, len = this.wins.length; i < len; i++) {
+            Match match = new Match(cards, this.wins[i]);
+            if (match.isMatch) {
                 return new Result(match, bet);
             }
         }

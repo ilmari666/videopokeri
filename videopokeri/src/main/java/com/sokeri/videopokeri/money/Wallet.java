@@ -8,21 +8,21 @@ package com.sokeri.videopokeri.money;
  */
 public class Wallet {
     protected long balance;
-    public Wallet(){
+    public Wallet() {
         this.balance = 0;
     }
-    public Wallet(long balance){
+    public Wallet(long balance) {
         this.balance = balance;
     }
     /**
      * Deposit money to the wallet
      * @param sum amount
      */
-    public void deposit(long sum){
-        this.balance+=sum;
+    public void deposit(long sum) {
+        this.balance += sum;
     }
     
-    public long getBalance(){
+    public long getBalance() {
         return this.balance;
     }
     /**
@@ -30,9 +30,9 @@ public class Wallet {
      * @param sum amount
      * @return true if sufficient funds, else false
      */
-    public boolean withdraw(long sum){
-        if (sum<=this.balance){
-            this.balance-=sum;
+    public boolean withdraw(long sum) {
+        if (sum <= this.balance) {
+            this.balance -= sum;
             return true;
         }
         return false;

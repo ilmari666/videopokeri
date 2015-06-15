@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sokeri.videopokeri.math;
 import com.sokeri.videopokeri.math.Win;
 import com.sokeri.videopokeri.math.Match;
@@ -22,17 +17,17 @@ public class Result {
      * @param bet amount the player placed on the game round
      */
     
-    public Result (Match match, long bet){
-        if (match != null){
+    public Result(Match match, long bet) {
+        if (match != null) {
             this.win = match.win;
-            this.winSum = match.win.getMultiplier()*bet;
+            this.winSum = match.win.getMultiplier() * bet;
             this.winningCards = match.used; // TODO remember to add wildcards before this
         }
     }
 
     @Override
-    public String toString(){
-        return ""+(win.getName()+" "+winSum+"mk "+winningCards);
+    public String toString() {
+        return "" + (win.getName() + " " + winSum + "mk " + winningCards);
     }
     
 }

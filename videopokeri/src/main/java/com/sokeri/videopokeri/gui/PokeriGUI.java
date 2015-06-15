@@ -1,36 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.sokeri.videopokeri.gui;
 /**
  *
  * @author Ilmari
  */
-/*
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-*/
+
 
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JComponent;
 import java.net.URL;
-import java.awt.Dimension;
 import javax.swing.ImageIcon;
-import java.awt.Insets;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowAdapter;
-
-
-
-
-
-
 import com.sokeri.videopokeri.Pokeri;
 import java.text.DecimalFormat;
 
@@ -51,27 +31,27 @@ public class PokeriGUI  {
         buildGUI(pokeri, handSize);
     }
 
-    public void buildGUI(Pokeri pokeri, int handSize){
+    public void buildGUI(Pokeri pokeri, int handSize) {
         window = new JFrame("Videopokeri");
         window.setLayout(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setLocation(0,0);
+        window.setLocation(0, 0);
         window.pack();
         window.setResizable(false);
         window.setVisible(true);
-        window.setSize(640,400);
+        window.setSize(640, 400);
         //this.buttons = createButtons();
         this.buttons = new Buttons();
         this.listener = new EventListener(pokeri, window, this.buttons);
         this.buttons.createButtons(this.listener);
 
         money = new JLabel();
-        money.setSize(200,100);
-        money.setLocation(400,275);
+        money.setSize(200, 100);
+        money.setLocation(400, 275);
 
         info = new JLabel();
-        info.setSize(400,50);
-        info.setLocation(0,0);
+        info.setSize(400, 50);
+        info.setLocation(0, 0);
 
         
         hand = new Hand(handSize, window, listener);
@@ -88,20 +68,19 @@ public class PokeriGUI  {
 
     }
     
-    public void updateMoney(long balance){
+    public void updateMoney(long balance) {
         DecimalFormat df = new DecimalFormat(".00");
-        money.setText("Saldo: "+df.format(balance/100)+"mk");
+        money.setText("Saldo: " + df.format(balance / 100) + "mk");
     }
 
-    public void updateInfo(String text){
-        System.out.println("updateInfo "+text);
+    public void updateInfo(String text) {
         this.info.setText(text);
     }
-    public void updateBet(long sum){
+    public void updateBet(long sum) {
         this.buttons.setBet(sum);
     }
         
-    private ImageIcon loadImageIcon(String src){
+    private ImageIcon loadImageIcon(String src) {
 
         URL imgURL = PokeriGUI.class.getResource(src);
         if (imgURL != null) {
@@ -110,5 +89,5 @@ public class PokeriGUI  {
             System.err.println("Couldn't find file: " + src);
             return null;
         }
-     }
+    }
 }

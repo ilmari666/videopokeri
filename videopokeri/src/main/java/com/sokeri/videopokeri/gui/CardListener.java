@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sokeri.videopokeri.gui;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
@@ -12,19 +7,16 @@ import java.awt.event.MouseEvent;
  */
 public class CardListener implements MouseListener {
     private Hand hand;
-    public CardListener(Hand hand){
+    public CardListener(Hand hand) {
         this.hand = hand;
     }
 
     @Override
-      public void mousePressed(MouseEvent e) {
-          
-          
-          
-          int result = testClick(e.getX(), e.getY());
-          if (result != -1){
-              hand.toggleLock(result);
-          }
+    public void mousePressed(MouseEvent e) {
+        int result = testClick(e.getX(), e.getY());
+        if (result != -1) {
+            hand.toggleLock(result);
+        }
     }
      
     @Override
@@ -35,6 +27,7 @@ public class CardListener implements MouseListener {
     public void mouseEntered(MouseEvent e) {
     }
      
+    @Override
     public void mouseExited(MouseEvent e) {
     }
      
@@ -47,16 +40,15 @@ public class CardListener implements MouseListener {
      * @param y y-coordinate
      * @return -1 if no cards were matched, otherwise the cards index in hand
      */
-    public int testClick(int x,int y){
+    public int testClick(int x, int y) {
         CardGraphics [] cards = hand.cards;
-        for (int i = 0; i < cards.length; i++){
+        for (int i = 0; i < cards.length; i++) {
             CardGraphics card = cards[i];
-            if (card != null){
+            if (card != null) {
                 int cardX = card.getX();
                 int cardY = card.getY();
-
-                if (x>=cardX && x<cardX+CardGraphics.CARD_WIDTH && y>=cardY && y<cardY+CardGraphics.CARD_HEIGHT){
-                   return i;
+                if (x >= cardX && x < cardX + CardGraphics.cardWidth && y >= cardY && y < cardY + CardGraphics.cardHeight) {
+                    return i;
                 }
             }
         }

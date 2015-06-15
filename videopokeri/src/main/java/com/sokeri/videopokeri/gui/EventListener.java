@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sokeri.videopokeri.gui;
 import com.sokeri.videopokeri.Pokeri;
 import java.awt.event.ActionEvent;
@@ -15,11 +10,11 @@ import java.text.DecimalFormat;
  *
  * @author ilmari
  */
-public class EventListener implements ActionListener{
+public class EventListener implements ActionListener {
     Pokeri mainLogic;
     JFrame mainWindow;
     Buttons buttons;
-    public EventListener(Pokeri main, JFrame mainWindow, Buttons buttons){
+    public EventListener(Pokeri main, JFrame mainWindow, Buttons buttons) {
         mainLogic = main;
         this.mainWindow = mainWindow;
         this.buttons = buttons;
@@ -27,14 +22,14 @@ public class EventListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent evt) {
         String command = evt.getActionCommand();
-        if (command.equals("Jaa")){
+        if (command.equals("Jaa")) {
             mainLogic.continueRound();
-        } else if (command.indexOf("Panos")!=-1){
+        } else if (command.indexOf("Panos") != -1) {
             buttons.setBet(mainLogic.getBetHandler().step(false));
         } else if (command.equals("Talleta 5.00mk")) {
             mainLogic.deposit(500);
         } else {
-             System.out.println(command);
+            System.out.println(command);
         }
               
     }

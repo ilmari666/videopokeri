@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sokeri.videopokeri.math;
 import java.util.Arrays;
 import com.sokeri.videopokeri.logic.Card;
@@ -20,22 +15,20 @@ public class Rule {
     public int testSpecific = -1;
     
    
-    public Rule(String rule){
+    public Rule(String rule) {
         this.setRule(rule);
     }
     /**
      * Set and parse a set of rules to be matched against in a Match instance
      * @param rule String defining a rule (a piece of a WinPattern) loaded through MathLoader
      */
-    public void setRule(String rule){
-       String[] tmp = rule.split("");
+    public void setRule(String rule) {
+        String[] tmp = rule.split("");
         // we do an ugly chew to create beauty and effectiveness in the live rule matching
-
         boolean complete = false;
-//        for (String instruction : tmp) {
-        for (int i=0;i<tmp.length;i++){
+        for (int i = 0; i < tmp.length; i++) {
             String instruction = tmp[i];
-            if (complete){
+            if (complete) {
                 break;
             }
             switch (instruction) {
@@ -43,7 +36,7 @@ public class Rule {
                     this.testX = true;
                     break;
                 case "y":
-                    this.testY= true;
+                    this.testY = true;
                     break;
                 case "s":
                     this.testSuite = true;
@@ -100,24 +93,24 @@ public class Rule {
     }
     
     @Override
-    public String toString(){
-        String str="";
-        if (this.testX){
-            str+="x";
+    public String toString() {
+        String str = "";
+        if (this.testX) {
+            str += "x";
         }
-        if (this.testY){
-            str+="y";
+        if (this.testY) {
+            str += "y";
         }
-        if (this.offset>0){
-            str = str+"+"+this.offset;
-        } else if (this.offset<0){
-            str = str+this.offset;
+        if (this.offset > 0) {
+            str = str + "+" + this.offset;
+        } else if (this.offset < 0) {
+            str = str + this.offset;
         }
-        if (this.testSpecific!=-1){
-            str = str+Card.valueChars[this.testSpecific];
+        if (this.testSpecific != -1) {
+            str = str + Card.VALUE_CHARS[this.testSpecific];
         }
-        if (this.testSuite){
-            str = str+"s";
+        if (this.testSuite) {
+            str = str + "s";
         }
         
         return str;

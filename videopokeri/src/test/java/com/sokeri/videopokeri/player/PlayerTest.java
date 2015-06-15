@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sokeri.videopokeri.money;
+package com.sokeri.videopokeri.player;
 
 import com.sokeri.videopokeri.player.Player;
 import org.junit.After;
@@ -22,22 +22,9 @@ public class PlayerTest {
     public PlayerTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
-         player=new Player();
-    }
-    
-    @After
-    public void tearDown() {
+        player = new Player();
     }
 
 
@@ -48,15 +35,12 @@ public class PlayerTest {
     }
     
     @Test
-    public void cantAffordTest(){
+    public void testPlaceBett() {
         player.addMoney(10);
-        assertEquals(false, player.canAfford(20));
+        player.placeBet(10);
+        assertEquals(0, player.getBalance());
     }
     
-    @Test
-    public void canAffordTest(){
-        player.addMoney(20);
-        assertEquals(true, player.canAfford(10));
-    }
+
     
 }

@@ -15,15 +15,7 @@ public class HandTest {
     Hand hand;
     public HandTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+ 
     @Before
     public void setUp() {
         hand = new Hand();
@@ -40,7 +32,7 @@ public class HandTest {
     // public void hello() {}
     @Test
     public void dealCard(){
-       Card card = new Card(1, Suite.SPADE);
+       Card card = new Card(1, Suite.spade);
        hand.deal(card);
        assertEquals(0, hand.getCardIndex(card));
     }
@@ -55,7 +47,7 @@ public class HandTest {
     
     @Test
     public void discardCard(){
-       Card card = new Card(1, Suite.SPADE);
+       Card card = new Card(1, Suite.spade);
        hand.deal(card);
        hand.discard(card);
        assertEquals(-1, hand.getCardIndex(card));

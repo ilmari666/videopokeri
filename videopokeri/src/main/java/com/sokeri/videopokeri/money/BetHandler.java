@@ -19,7 +19,7 @@ public class BetHandler {
      * A class handles the logic related to betting
      * @param steps a list of allowed bets that the player can surf through
      */
-    public BetHandler(Pokeri main, long[] steps, Player player){
+    public BetHandler(Pokeri main, long[] steps, Player player) {
         this.main = main;
         this.steps = steps;
         this.player = player;
@@ -28,17 +28,21 @@ public class BetHandler {
      * 
      * @return current bet
      */
-    public long getBet(){
+    public long getBet() {
         //@todo return 0 if the player cant afford the current bet
         return steps[currentBetIndex];
     }
     
-    public long levelOfBetAfforded(){
+    
+    public boolean playerAffordsCurrentBet() {
+        return (player.getBalance() - steps[currentBetIndex] >= 0);
+    }
+    public long levelOfBetAfforded() {
         long balance = player.getBalance();
-        while (!player.canAfford(steps[currentBetIndex]) && currentBetIndex>0){
+        while (!playerAffordsCurrentBet() && currentBetIndex > 0) {
             currentBetIndex--;
         }
-        if (player.canAfford(steps[currentBetIndex])){
+        if (playerAffordsCurrentBet()) {
             return steps[currentBetIndex];
         }
         return 0;
@@ -50,26 +54,25 @@ public class BetHandler {
      * @param player the player is revealed as a parameter to check if he can afford the bet
      */
    
-    public long step(boolean automatic){
-        if (main.state == Pokeri.States.PLACE_BET){
+    public long step(boolean automatic) {
+        if (main.state == Pokeri.States.PLACE_BET) {
             int oldIndex = currentBetIndex;
             
-            if (currentBetIndex<steps.length-1){
+            if (currentBetIndex < steps.length - 1) {
                 currentBetIndex++;
             } else {
                 currentBetIndex = 0;
             }
-            if (automatic){ // if triggered by the system
-                while (currentBetIndex != 0 && !player.canAfford(steps[currentBetIndex])){
+            if (automatic) { // if triggered by the system
+                while (currentBetIndex != 0 && !playerAffordsCurrentBet()) {
                     currentBetIndex--;
                 }
             } else {
-                if (!player.canAfford(steps[currentBetIndex])){
+                if (!playerAffordsCurrentBet()) {
                     currentBetIndex = 0;
                 }
             }
         }
-        System.out.println(currentBetIndex);
         return this.steps[currentBetIndex];
     }
 }
