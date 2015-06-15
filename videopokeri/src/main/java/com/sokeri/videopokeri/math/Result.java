@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sokeri.videopokeri.logic;
+package com.sokeri.videopokeri.math;
 import com.sokeri.videopokeri.math.Win;
 import com.sokeri.videopokeri.math.Match;
 import com.sokeri.videopokeri.money.BetHandler;
@@ -13,7 +13,7 @@ import com.sokeri.videopokeri.money.BetHandler;
  * @author Ilmari
  */
 public class Result {
-    protected long winSum = 0;
+    public long winSum = 0;
     public boolean[] winningCards;
     public Win win;
     /**
@@ -29,9 +29,7 @@ public class Result {
             this.winningCards = match.used; // TODO remember to add wildcards before this
         }
     }
-    public long getWinSum(){
-        return this.winSum;
-    }
+
     @Override
     public String toString(){
         return ""+(win.getName()+" "+winSum+"mk "+winningCards);

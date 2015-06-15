@@ -11,7 +11,7 @@ import com.sokeri.videopokeri.money.Wallet;
 import com.sokeri.videopokeri.logic.Deck;
 import com.sokeri.videopokeri.money.Player;
 import com.sokeri.videopokeri.money.BetHandler;
-import com.sokeri.videopokeri.logic.Result;
+import com.sokeri.videopokeri.math.Result;
 import com.sokeri.videopokeri.gui.PokeriGUI;
 import com.sokeri.videopokeri.logic.Card;
 /**
@@ -92,10 +92,10 @@ public class Pokeri {
             gui.hand.dealCards(dealt);
             gui.hand.setLockableState(false);
             debugHand();
-            Result result = new Result(this.math.checkWins(player.hand), betHandler.getBet());
+            Result result = this.math.checkWins(player.hand, betHandler.getBet());
             if (result.win != null){
                 System.out.println(result);
-                player.addMoney(result.getWinSum());
+                player.addMoney(result.winSum);
                 gui.updateMoney(player.getBalance());
                 gui.hand.highlight(result.winningCards);
             }

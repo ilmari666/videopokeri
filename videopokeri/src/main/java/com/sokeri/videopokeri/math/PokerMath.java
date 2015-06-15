@@ -42,7 +42,7 @@ public class PokerMath {
      * @param hand Players hand
      * @return match instance if one is found
      */
-    public Match checkWins(Hand hand){
+    public Result checkWins(Hand hand, long bet){
        // Card[] cards = hand.getCardsWithoutWilds(); // get cards to be tested
 
         //Arrays.sort(cards); // sort them for easy matching
@@ -53,9 +53,9 @@ public class PokerMath {
         for (int i=0, len = this.wins.length; i<len; i++){
             Match match = new Match (cards, this.wins[i]);
             if (match.isMatch){
-                return match;
+                return new Result(match, bet);
             }
         }
-        return null;
+        return new Result(null, bet);
     }
 }
