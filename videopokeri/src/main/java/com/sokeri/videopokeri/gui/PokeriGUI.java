@@ -43,11 +43,16 @@ public class PokeriGUI  {
     JFrame window;
     JPanel cards;
     JLabel money;
+    JLabel info;
     public Hand hand;
     Buttons buttons;
     EventListener listener;
     public PokeriGUI(Pokeri pokeri, int handSize) {
-        this.listener = new EventListener(pokeri, window);
+        buildGUI(pokeri, handSize);
+    }
+
+    public void buildGUI(Pokeri pokeri, int handSize){
+       this.listener = new EventListener(pokeri, window);
         window = new JFrame("Videopokeri");
         window.setLayout(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,19 +64,26 @@ public class PokeriGUI  {
         //this.buttons = createButtons();
         this.buttons = new Buttons(listener);
         money = new JLabel();
-        money.setSize(100,100);
+        money.setSize(200,100);
         money.setLocation(300,275);
- 
+
+        info = new JLabel();
+        info.setSize(400,50);
+        info.setLocation(0,0);
+        info.setText("Aloita kierros");
+        
         hand = new Hand(handSize, window, listener);
         window.getContentPane().add(buttons);
         window.getContentPane().add(hand);
         window.getContentPane().add(money);
+        window.getContentPane().add(info);
         window.setFocusable(true);
         window.setFocusTraversalKeysEnabled(false);
         window.addKeyListener(new KeyboardListener(hand));
         window.addMouseListener(new CardListener(hand));
 
         window.repaint();
+
     }
     
     public void updateMoney(long balance){
@@ -79,6 +91,9 @@ public class PokeriGUI  {
         money.setText("Saldo: "+df.format(balance/100)+"mk");
     }
 
+    public void updateInfo(String text){
+        info.setText(text);
+    }
         
     private ImageIcon loadImageIcon(String src){
 

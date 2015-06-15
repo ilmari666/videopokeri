@@ -67,6 +67,7 @@ public class Pokeri {
             gui.hand.setLockableState(true);
             gui.updateMoney(player.getBalance());
             state = States.PLAYER_SELECT;
+            gui.updateInfo("Lukitse haluamasi kortit ja jaa kierros loppuun");
 
         }
      
@@ -102,6 +103,8 @@ public class Pokeri {
         }
         // check for remaining money (-> state.deposit)
         state = States.PLACE_BET;
+        gui.updateInfo("Valitse panostaso ja aloita kierros.");
+
     }
     public Player getPlayer(){
         // for development time purposes
@@ -131,6 +134,8 @@ public class Pokeri {
         BetHandler betHandler = poker.getBetHandler();
         player.addMoney(10000);
         poker.gui.updateMoney(player.getBalance());
+        poker.gui.updateInfo("Valitse panostaso ja aloita kierros.");
+
         
     }
 }

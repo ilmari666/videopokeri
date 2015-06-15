@@ -89,7 +89,7 @@ public class Hand extends JComponent {
     public void highlight(boolean[] hits){
         for (int i = 0; i < hits.length; i++){
             if (hits[i]){
-                cards[i].setLocation(cards[i].getX(),0);
+                cards[i].setLocation(cards[i].getX(),30);
             }
         }
     }
@@ -170,7 +170,7 @@ public class Hand extends JComponent {
      */
     public void dealCard(CardGraphics card, int location){
         this.cards[location] = card;
-        card.setLocation(location*(CardGraphics.CARD_WIDTH+CARD_MARGIN),20);
+        card.setLocation(location*(CardGraphics.CARD_WIDTH+CARD_MARGIN),60);
         add(card);
     }
 }
