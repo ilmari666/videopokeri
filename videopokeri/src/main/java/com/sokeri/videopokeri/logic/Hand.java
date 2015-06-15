@@ -78,7 +78,6 @@ public class Hand {
      */
     public int getFreeSlots() {
         int freeSlots = 0;
-        System.out.println(cards);
         for (int i = 0; i < cards.length; i++) {
             if (cards[i] == null) {
                 freeSlots++;
