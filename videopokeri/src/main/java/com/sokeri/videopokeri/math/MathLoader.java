@@ -25,8 +25,6 @@ public class MathLoader {
             MathConfig cfg = gson.fromJson(reader, MathConfig.class);
             return cfg;
         } catch (UnsupportedEncodingException e) {
-            // todo sort exceptions
-            System.out.println("UnsupportedEncodingException. Unable to load " + src);
             return null;
         }
     }

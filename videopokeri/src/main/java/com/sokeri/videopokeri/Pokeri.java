@@ -52,6 +52,7 @@ public class Pokeri {
             gui.hand.setLockableState(true);
             gui.updateMoney(player.getBalance());
             changeState(States.PLAYER_SELECT);
+            return true;
         }
      
         return false;
@@ -91,6 +92,10 @@ public class Pokeri {
             }
         }
     }
+    
+    public States getState(){
+        return this.state;
+    }
     public Player getPlayer() {
         // for development time purposes
         return this.player;
@@ -113,6 +118,11 @@ public class Pokeri {
         }
         gui.updateMoney(player.getBalance());
     }
+    /**
+     * User triggers round continuation by pressing 'Jaa'-button.
+     * Depending on the state, either a new round will start, a second round of cards will be dealt, or nothing happens (States.DEPOSIT)
+     *
+     */
     public void continueRound() {
         if (state == States.PLACE_BET) {
             startRound();
@@ -123,6 +133,11 @@ public class Pokeri {
     public void changeState(States newState) {
         changeState(newState, "");
     }
+    /**
+     * Changes the state and informs the GUI to update it's informational message accordingly.
+     * @param newState new state
+     * @param prefixMessage prefix a state message with another message.
+     */
     public void changeState(States newState, String prefixMessage) {
         
         switch (newState) {
