@@ -18,3 +18,8 @@ Pelin voittokädet määritellään JSON-formaatissa ja parsitaan käyttäen Goo
 #Kayttajat
 -Pelaaja syöttää rahaa, valitsee pidettävät kortit 
 -Pelin ylläpitäjä voi vaihtaa pelin kiekkoja ja palkitsemislogiikkaa editoimalla JSON-tiedostoja
+
+#Rakenne
+
+!!
+
