@@ -1,7 +1,7 @@
 package com.sokeri.videopokeri.math;
 import com.sokeri.videopokeri.math.Win;
 import com.sokeri.videopokeri.math.Match;
-import com.sokeri.videopokeri.money.BetHandler;
+import com.sokeri.videopokeri.bet.BetHandler;
 
 /**
  *

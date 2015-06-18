@@ -2,10 +2,10 @@ package com.sokeri.videopokeri;
 
 import com.sokeri.videopokeri.math.PokerMath;
 import com.sokeri.videopokeri.math.MathLoader;
-import com.sokeri.videopokeri.money.Wallet;
+import com.sokeri.videopokeri.player.Wallet;
 import com.sokeri.videopokeri.logic.Deck;
 import com.sokeri.videopokeri.player.Player;
-import com.sokeri.videopokeri.money.BetHandler;
+import com.sokeri.videopokeri.bet.BetHandler;
 import com.sokeri.videopokeri.math.Result;
 import com.sokeri.videopokeri.gui.PokeriGUI;
 import com.sokeri.videopokeri.logic.Card;

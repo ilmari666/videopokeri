@@ -28,7 +28,7 @@ public class Match {
      * win is the matching win that was checked against with
      * @param cards players hand not including wild cards
      * @param win win to be compared against to
-     * @param wildCards number of wildcards in the hand 
+     * @return the instance of itself
      */
     public Match compare(Card[] cards, Win win) {
         this.cards = cards;

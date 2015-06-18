@@ -52,8 +52,8 @@ public class Deck  {
     }
     /** 
      * Deals one card to to a given hand
-     * @param target
-     * @return dealt
+     * @param hand destination hand
+     * @return dealt if successful, the dealt card, else null
      */
  
     public Card deal(Hand hand) {

@@ -1,5 +1,5 @@
 
-package com.sokeri.videopokeri.money;
+package com.sokeri.videopokeri.bet;
 import com.sokeri.videopokeri.player.Player;
 import com.sokeri.videopokeri.Pokeri;
 
@@ -18,6 +18,7 @@ public class BetHandler {
     /**
      * A class handles the logic related to betting
      * @param steps a list of allowed bets that the player can surf through
+     * @param player is the instance of player the handler is linked to
      */
     public BetHandler(Pokeri main, long[] steps, Player player) {
         this.main = main;
@@ -51,7 +52,6 @@ public class BetHandler {
     /**
      * find next afforded bet or loop
      * @return current bet amount, 0 if player has not enough money for any bet
-     * @param player the player is revealed as a parameter to check if he can afford the bet
      */
    
     public long step(boolean automatic) {

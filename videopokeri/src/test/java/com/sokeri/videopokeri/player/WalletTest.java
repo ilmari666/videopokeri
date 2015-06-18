@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.sokeri.videopokeri.money;
+package com.sokeri.videopokeri.player;
 
-import com.sokeri.videopokeri.money.Wallet;
+import com.sokeri.videopokeri.player.Wallet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

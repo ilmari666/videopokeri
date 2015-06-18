@@ -19,6 +19,12 @@ import static org.junit.Assert.*;
 public class PokeriTest {
     Pokeri pokeri;
     
+    @Before
+    public void setUp() {
+        pokeri = new Pokeri();
+    }
+    
+
     @Test
     public void playerNeedsToDepositMoneyBeforeABetCanBePlaced(){
         assertEquals(false,  pokeri.startRound());

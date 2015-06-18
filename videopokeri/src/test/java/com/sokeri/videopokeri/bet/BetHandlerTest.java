@@ -1,4 +1,4 @@
-package com.sokeri.videopokeri.money;
+package com.sokeri.videopokeri.bet;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,6 +6,7 @@ package com.sokeri.videopokeri.money;
  * and open the template in the editor.
  */
 
+import com.sokeri.videopokeri.bet.BetHandler;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

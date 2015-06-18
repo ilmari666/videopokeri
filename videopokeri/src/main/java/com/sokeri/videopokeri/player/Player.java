@@ -1,7 +1,6 @@
 
 package com.sokeri.videopokeri.player;
 import com.sokeri.videopokeri.logic.Hand;
-import com.sokeri.videopokeri.money.Wallet;
 
 /**
  *

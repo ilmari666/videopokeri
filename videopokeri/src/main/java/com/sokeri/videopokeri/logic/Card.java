@@ -45,7 +45,7 @@ public class Card implements Comparable<Card> {
      * 1 = ace of spades
      * 13 = king of spades
      * 14 = ace of hearts
-     * @param value int (0-52)
+     * @param seedValue int (0-52)
     */
     public Card(int seedValue) {
         if (seedValue == 0) {

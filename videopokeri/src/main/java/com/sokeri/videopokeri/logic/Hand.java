@@ -25,7 +25,7 @@ public class Hand {
     }
    /**
     * Discards a Card object from the hand and returns it;
-    * @param target 
+    * @param card target 
     * @return removed item
     */
     public Card discard(Card card) {
