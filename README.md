@@ -1,2 +1,3 @@
-# videopokeri 
-# test 12
+# Videopokeri
+
+A simple single player poker game.
